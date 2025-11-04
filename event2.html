@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Botanical Workshop | Blossoms 2025</title>
+  <title>Literary Events | Blossoms 2025</title>
   <link rel="stylesheet" href="styles.css">
   <script defer src="script.js"></script>
 </head>
@@ -23,7 +23,7 @@
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="events.html">Events</a>
+      <a href="events.html" class="active">Events</a>
     </div>
     <div class="hamburger-menu-toggle" onclick="toggleMenu()">☰</div>
     <div class="hamburger-menu" id="hamburger-menu">
@@ -33,31 +33,94 @@
     </div>
   </nav>
 
+  <!-- Literary Event Details -->
   <section class="event-details">
-    <h1>Botanical Workshop</h1>
-    <div class="date">April 22, 2025 | 9:00 AM - 4:00 PM</div>
+    <h1 class="art-heading">Literary Events – Where minds ignite</h1>
 
-    <img src="image1.jpg" alt="Botanical Workshop">
+    <div class="date">Blossoms 2025 | Category: Literary</div>
 
     <div class="description">
-      <p>Join our expert horticulturists and floral designers for an immersive hands-on workshop that unlocks the secrets of botanical artistry. Whether you're a seasoned gardener or just beginning your journey with plants, this workshop offers something for everyone.</p>
-      <p>Learn the fundamentals of flower arranging, from selecting the perfect blooms to creating stunning centerpieces and bouquets. Discover plant care techniques, propagation methods, and sustainable gardening practices that will help your green thumb flourish.</p>
-      <p>Participants will work with fresh flowers, exotic plants, and professional tools under the guidance of our master florists. Take home not only new skills but also beautiful arrangements to decorate your home.</p>
+      <p>The <strong>Literary category</strong> at <em>Blossoms 2025</em> celebrates the power of words that shape our thoughts and stories.
+      Each event is a stage for expression — from poetry and prose to debate and drama, voices come alive 
+      through rhythm, reason, and emotion.Whether through storytelling, speech, or script, this category invites 
+      everyone to witness the magic of language and the art of ideas in their most captivating form.</p>
     </div>
 
-    <div class="schedule">
-      <h3>Workshop Schedule</h3>
-      <ul>
-        <li>9:00 AM - Welcome & Introduction to Floral Design</li>
-        <li>10:00 AM - Flower Selection & Preparation</li>
-        <li>11:30 AM - Basic Arrangement Techniques</li>
-        <li>1:00 PM - Lunch Break & Networking</li>
-        <li>2:00 PM - Advanced Techniques & Plant Care</li>
-        <li>3:30 PM - Q&A Session & Take-Home Tips</li>
-      </ul>
+    <!-- Flashcard Slideshow -->
+    <div class="flashcard-slideshow vibrant">
+      <div class="flashcard active" style="background-image: url('placeholder1.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Debate</h2>
+          <p>A battle of ideas where logic, eloquence, and perspective come together to shape powerful arguments.</p>
+        </div>
+      </div>
+
+      <div class="flashcard" style="background-image: url('placeholder2.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Extempore</h2>
+          <p>A spontaneous showcase of wit and clarity, where speakers think on their feet and express ideas with confidence and grace.</p>
+        </div>
+      </div>
+
+      <div class="flashcard" style="background-image: url('placeholder3.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Air Crash</h2>
+          <p>A creative role-play event where participants imagine surviving a plane crash and use quick thinking, teamwork, and storytelling to make their case for survival.</p>
+        </div>
+      </div>
+
+      <div class="flashcard" style="background-image: url('placeholder4.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Dumb Charades</h2>
+          <p>A fun, expressive guessing game where participants act out words or movie titles without speaking, relying only on gestures and imagination.</p>
+        </div>
+      </div>
+
+      <div class="flashcard" style="background-image: url('placeholder5.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Just A Minute (JAM)</h2>
+          <p>A one-minute challenge where participants speak on a given topic without hesitation, repetition, or deviation, testing their spontaneity and fluency.</p>
+        </div>
+      </div>
+
+      <div class="flashcard" style="background-image: url('placeholder6.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Creative Writing</h2>
+          <p>Adorn hands with intricate patterns that blend tradition, elegance, and artistic grace.</p>
+        </div>
+      </div>
+
+      <div class="flashcard" style="background-image: url('placeholder7.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Quiz</h2>
+          <p>A thrilling test of knowledge and speed where participants race to answer questions across diverse topics with accuracy and insight.</p>
+        </div>
+      </div>
+
+      <div class="flashcard" style="background-image: url('placeholder8.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Pot Pourri</h2>
+          <p>A lively mix of fun games and challenges that test creativity, wit, and teamwork in a light-hearted, entertaining way.</p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <button class="flash-prev">❮</button>
+      <button class="flash-next">❯</button>
     </div>
 
-    <a href="events.html" class="btn">Back to Events</a>
+    <!-- Back Button -->
+    <div class="back-btn-container">
+      <a href="events.html" class="btn center-btn">Back to Events</a>
+    </div>
   </section>
 
   <!-- Footer -->

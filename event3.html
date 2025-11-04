@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Garden Tour Experience | Blossoms 2025</title>
+  <title>Music Events | Blossoms 2025</title>
   <link rel="stylesheet" href="styles.css">
   <script defer src="script.js"></script>
 </head>
@@ -23,7 +23,7 @@
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="events.html">Events</a>
+      <a href="events.html" class="active">Events</a>
     </div>
     <div class="hamburger-menu-toggle" onclick="toggleMenu()">☰</div>
     <div class="hamburger-menu" id="hamburger-menu">
@@ -33,32 +33,70 @@
     </div>
   </nav>
 
+  <!-- Music Event Details -->
   <section class="event-details">
-    <h1>Garden Tour Experience</h1>
-    <div class="date">May 10, 2025 | 8:00 AM - 5:00 PM</div>
+    <h1 class="art-heading">Music Events – Where ideas flourish</h1>
 
-    <img src="image2.jpg" alt="Garden Tour Experience">
+    <div class="date">Blossoms 2025 | Category: Music</div>
 
     <div class="description">
-      <p>Embark on a magical journey through some of the most breathtaking gardens in the region. Our expert guides will lead you through meticulously landscaped gardens, hidden botanical treasures, and sustainable green spaces that showcase the harmony between nature and human creativity.</p>
-      <p>Discover rare and exotic plants, learn about native species, and explore innovative gardening techniques. From serene rose gardens to vibrant butterfly habitats, each stop on the tour offers unique insights into the world of horticulture and environmental stewardship.</p>
-      <p>This full-day experience includes transportation between gardens, expert commentary, photography opportunities, and a special lunch featuring garden-to-table cuisine. Perfect for nature enthusiasts, photographers, and anyone seeking inspiration for their own gardening projects.</p>
+      <p>The <strong>Music category</strong> at <em>Blossoms 2025</em> celebrates the rhythm and harmony that connect hearts and souls.
+      Each event is a symphony of talent — from soulful vocals to dynamic instrumentals, melodies weave stories
+      that words cannot express. Whether through beats, notes, or tunes, this category invites everyone to feel the 
+      pulse of passion and experience the universal language of music in its purest form.</p>
     </div>
 
-    <div class="schedule">
-      <h3>Tour Itinerary</h3>
-      <ul>
-        <li>8:00 AM - Departure & Welcome Briefing</li>
-        <li>9:00 AM - Rose Garden Exploration</li>
-        <li>11:00 AM - Butterfly Garden & Native Plants</li>
-        <li>1:00 PM - Garden-to-Table Lunch</li>
-        <li>2:30 PM - Sustainable Gardens & Water Features</li>
-        <li>4:30 PM - Q&A and Farewell</li>
-        <li>5:00 PM - Return to Starting Point</li>
-      </ul>
+    <!-- Flashcard Slideshow -->
+    <div class="flashcard-slideshow vibrant">
+      <div class="flashcard active" style="background-image: url('placeholder1.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Indian Folk & Film Singing (SOLO)</h2>
+          <p>A soulful celebration of India’s musical heritage, where singers blend tradition and cinema through expressive melodies and powerful vocals.</p>
+        </div>
+      </div>
+
+      <div class="flashcard" style="background-image: url('placeholder2.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Western Singing (SOLO)</h2>
+          <p>A vibrant showcase of global melodies and vocal artistry, where singers captivate with rhythm, emotion, and style.</p>
+        </div>
+      </div>
+
+      <div class="flashcard" style="background-image: url('placeholder3.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Acoustic Music Group (WESTERN)</h2>
+          <p>A harmonious blend of voices and instruments creating soulful, unplugged melodies that resonate with pure musical energy.</p>
+        </div>
+      </div>
+
+      <div class="flashcard" style="background-image: url('placeholder4.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Battle of Bands (WESTERN)</h2>
+          <p>An electrifying face-off where bands ignite the stage with powerful performances, dynamic rhythms, and unmatched musical energy.</p>
+        </div>
+      </div>
+
+      <div class="flashcard" style="background-image: url('placeholder5.jpg');">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Battle of Bands (INDIAN)</h2>
+          <p>A high-voltage musical showdown where Indian bands fuse tradition and modernity, delivering powerful rhythms and captivating performances.</p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <button class="flash-prev">❮</button>
+      <button class="flash-next">❯</button>
     </div>
 
-    <a href="events.html" class="btn">Back to Events</a>
+    <!-- Back Button -->
+    <div class="back-btn-container">
+      <a href="events.html" class="btn center-btn">Back to Events</a>
+    </div>
   </section>
 
   <!-- Footer -->
