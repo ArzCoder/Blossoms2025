@@ -1,91 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blossoms 2025 | Team Onyx</title>
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blossoms Animation</title>
+    <!-- Link to the CSS stylesheet -->
+    <link rel="stylesheet" href="styleindex.css">
+    <!-- Icon library for trophies & footer -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-  <!-- ======= NAVBAR ======= -->
-  <header class="navbar">
-    <div class="logo left-logo">
-      <img src="logo.png" alt="Left Logo">
-    </div>
+    <!-- 
+      Scene 1: Flower particles container
+    -->
+    <div id="flower-particles-container"></div>
 
-    <div class="center-heading">
-      <h1 class="main-title">Blossoms 2025</h1>
-      <p class="sub-title">Team Onyx</p>
-    </div>
+    <!-- 
+      Scenes 2, 3, & 4: The animated header
+      NEW: Now includes college logo and space-between layout
+    -->
+    <header id="main-header" class="animation-element logo-center">
+        <!-- The logo container will handle the scaling animation -->
+        <div id="logo-container">
+            <!-- This is your actual logo image -->
+            <img src="blossoms_logo.png" alt="Blossoms Logo" id="blossoms-logo">
+        </div>
 
-    <nav class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#events">Events</a>
-      <a href="#about">About Us</a>
-    </nav>
+        <!-- The nav links are hidden until Scene 4 -->
+        <nav id="main-nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#events">Events</a>
+            <a href="#schedules">Schedules</a>
+            <a href="#winners">Winners</a>
+            <a href="#contact">Contact Us</a>
+        </nav>
 
-    <div class="logo right-logo">
-      <img src="logoo.png" alt="Right Logo">
-    </div>
+        <!-- NEW: Collage Logo Container -->
+        <div id="collage-logo-container">
+            <img src="Christ_logo.png" alt="Collage Logo" id="collage-logo">
+        </div>
+    </header>
 
-    <div class="hamburger-menu-toggle">☰</div>
-    <div class="hamburger-menu">
-      <a href="#home">Home</a>
-      <a href="#events">Events</a>
-      <a href="#about">About Us</a>
-    </div>
-  </header>
+    <!-- 
+      Main Page Content
+      UPDATED: Removed 'animation-element' class.
+    -->
+    <main id="main-content">
+        
+        <!-- 
+          Hero Section (The original content) 
+          UPDATED: Added 'animation-element' class so it fades in first.
+        -->
+        <section id="hero" class="animation-element">
+            <h1 id="main-title">Blossoms</h1>
+            <h2 id="sub-title">School of Sciences 2025</h2>
+            <p id="slogan">Where Bright Minds Bloom</p>
+            <a href="#register" id="register-button">Register Now</a>
 
-  <!-- ======= HERO SECTION ======= -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Welcome to Blossoms 2025</h1>
-      <p>Experience the spirit of celebration, creativity, and togetherness — all under one vibrant fest.</p>
-      <a href="#events" class="btn">Explore Events</a>
-    </div>
-    <div class="hero-image">
-      <img src="image.jpg" alt="Hero Image">
-    </div>
-  </section>
-<!-- ======= EVENTS SECTION ======= -->
-<section id="events" class="events-page">
-  <h1>Our Exciting Events</h1>
-  <p>Discover the enchanting world of Blossoms 2025 through our carefully curated events. From floral exhibitions to interactive workshops, each event is designed to celebrate the beauty and wonder of nature.</p>
+            <!-- NEW: Image Placeholder -->
+            <div class="hero-image-placeholder">
+                <!-- 
+                  This is the placeholder for your "Flames to Flight" image. 
+                  Replace the 'src' with your PNG file path.
+                -->
+                <img src="https://placehold.co/800x400/ffffff/5c2a4d?text=Flames+to+Flight+Image+Here" alt="Blossoms Fest Highlights">
+            </div>
+            <!-- END: Image Placeholder -->
 
-  <div class="events-list">
-    <a href="event1.html" class="event-card">
-      <h3>Floral Fantasy Exhibition</h3>
-      <p>Immerse yourself in a breathtaking display of exotic flowers and artistic arrangements that will transport you to a world of color and fragrance.</p>
-      <div class="date">March 15, 2025</div>
-      <span class="btn">Learn More</span>
-    </a>
-    <a href="event2.html" class="event-card">
-      <h3>Botanical Workshop</h3>
-      <p>Join our expert horticulturists for hands-on workshops where you'll learn the art of flower arranging and plant care techniques.</p>
-      <div class="date">April 22, 2025</div>
-      <span class="btn">Learn More</span>
-    </a>
-    <a href="event3.html" class="event-card">
-      <h3>Garden Tour Experience</h3>
-      <p>Embark on a guided tour through stunning gardens, discovering rare plants and learning about sustainable gardening practices.</p>
-      <div class="date">May 10, 2025</div>
-      <span class="btn">Learn More</span>
-    </a>
-  </div>
-</section>
+        </section>
 
-<!-- ======= ABOUT US SECTION ======= -->
-<section id="about" class="about-section">
-  <iframe src="about.html" class="embed-section"></iframe>
-</section>
+        <!-- 
+          MOVED: Events Hint Section 
+          UPDATED: Added 'animate-on-scroll' class
+        -->
+        <section id="events-hint" class="content-section animate-on-scroll">
+            <h2 class="section-title">Events Showcase</h2>
+            <div class="event-images-marquee">
+                <div class="event-images-track">
+                    <!-- Placeholder images for previous events -->
+                    <img src="https://placehold.co/300x200/ec407a/white?text=Event+1" alt="Previous Event 1">
+                    <img src="https://placehold.co/300x200/8e24aa/white?text=Event+2" alt="Previous Event 2">
+                    <img src="https://placehold.co/300x200/d81b60/white?text=Event+3" alt="Previous Event 3">
+                    <img src="https://placehold.co/300x200/ad1457/white?text=Event+4" alt="Previous Event 4">
+                    <img src="https://placehold.co/300x200/5c2a4d/white?text=Event+5" alt="Previous Event 5">
+                    <!-- Duplicate for seamless loop -->
+                    <img src="https://placehold.co/300x200/ec407a/white?text=Event+1" alt="Previous Event 1">
+                    <img src="https://placehold.co/300x200/8e24aa/white?text=Event+2" alt="Previous Event 2">
+                    <img src="https://placehold.co/300x200/d81b60/white?text=Event+3" alt="Previous Event 3">
+                    <img src="https://placehold.co/300x200/ad1457/white?text=Event+4" alt="Previous Event 4">
+                    <img src="https://placehold.co/300x200/5c2a4d/white?text=Event+5" alt="Previous Event 5">
+                </div>
+            </div>
+            <!-- NEW: Added registration text -->
+            <p class="registration-text" style="margin-top: 30px; font-size: 1.5rem;">
+                Register now for the events, slots are open!!
+            </p>
+            <a href="#events" class="inline-button" style="margin-top: 10px;">See All Events</a>
+        </section>
 
 
-  <!-- ======= FOOTER ======= -->
-  <footer>
-    <p>© Blossoms 2025 | Team Onyx</p>
-  </footer>
+        <!-- 
+          About Blossoms Section 
+          UPDATED: Added 'animate-on-scroll' class
+        -->
+        <section id="about-blossoms" class="content-section animate-on-scroll">
+            <h2 class="section-title">About Blossoms</h2>
+            
+            <!-- NEW: Two-column layout for About -->
+            <div class="about-container">
+                <div class="about-text">
+                    <p class="poem">
+                        "In the heart of Christ's vibrant hue,<br>
+                        Where talents bloom in a colorful brew,<br>
+                        Art, stage, and words take flight anew,<br>
+                        In Blossoms' embrace, excellence rings true."
+                    </p>
+                    <p class="description">
+                        Blossoms is the intra-deanery cultural fest at Christ (Deemed To Be University) Bangalore with the motto ‘Be the best’. This is a unique venture where all 7000 students of Christ University, Bangalore participate in a cultural event. The events are divided into four categories - Art, Theatre, Stage & Literary. Students compete in multiple events across these categories. The winners lay their hands on the Inter-Deanery trophy for Artistic Excellence and Service.
+                    </p>
+                </div>
+                <div class="about-video">
+                    <!-- Placeholder for your video -->
+                    <video controls muted poster="https://placehold.co/600x400/ec407a/white?text=About+Video">
+                        <!-- <source src="your-video-file.mp4" type="video/mp4"> -->
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
 
+        <!-- 
+          Achievements Section 
+          (Left unchanged, has its own custom animation ID)
+        -->
+        <section id="achievements" class="content-section">
+            <h2 class="section-title">Our Achievements</h2>
+            <div class="trophy-container">
+                <div class="trophy-card">
+                    <!-- UPDATED: Replaced icon with image -->
+                    <img src="3rd.png" alt="3rd Place Trophy" class="trophy-image">
+                    <h3>Procession</h3>
+                    <p>Third Place</p>
+                </div>
+                <div class="trophy-card">
+                    <!-- UPDATED: Replaced icon with image -->
+                    <img src="2nd.png" alt="2nd Place Trophy" class="trophy-image">
+                    <h3>'We the Best' Trophy</h3>
+                    <p>Second Place</p>
+                </div>
+                <div class="trophy-card">
+                    <!-- UPDATED: Replaced icon with image -->
+                    <img src="2nd.png" alt="2nd Place Trophy" class="trophy-image">
+                    <h3>Inauguration</h3>
+                    <p>Second Place</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 
+            UPDATED: Original Events Hint Section 
+            UPDATED: Added 'animate-on-scroll' class
+        -->
+        <section id="events-original-spot" class="content-section animate-on-scroll">
+            <h2 class="section-title">Event Categories</h2>
+            
+            <!-- NEW: 2-Column layout for stack + details -->
+            <div class="event-details-container">
+                
+                <!-- Column 1: Card Stack -->
+                <div class="card-stack-container">
+                    <div class="card-stack" id="event-card-stack">
+                        <!-- Card 1 -->
+                        <div class="card-stack_item" data-event-name="Artistry">
+                            <div class="card-content">
+                                <img src="https://placehold.co/400x300/ec407a/white?text=Artistry" alt="Artistry">
+                                <h3>Artistry</h3>
+                                <!-- Hidden details, shown on the right -->
+                                <div class="card-details">
+                                    <p>Categories: Painting, Sketching, Digital Art</p>
+                                    <a href="#register-art" class="inline-button">Register for Artistry</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="card-stack_item" data-event-name="Limelight">
+                            <div class="card-content">
+                                <img src="https://placehold.co/400x300/8e24aa/white?text=Limelight" alt="Limelight">
+                                <h3>Limelight</h3>
+                                <div class="card-details">
+                                    <p>Categories: Drama, Mime, Street Play</p>
+                                    <a href="#register-limelight" class="inline-button">Register for Limelight</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="card-stack_item" data-event-name="Rhythm">
+                            <div class="card-content">
+                                <img src="https://placehold.co/400x300/d81b60/white?text=Rhythm" alt="Rhythm">
+                                <h3>Rhythm</h3>
+                                <div class="card-details">
+                                    <p>Categories: Solo Dance, Group Dance, Vocals</p>
+                                    <a href="#register-rhythm" class="inline-button">Register for Rhythm</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="card-stack_item" data-event-name="Eloquent">
+                            <div class="card-content">
+                                <img src="https://placehold.co/400x300/ad1457/white?text=Eloquent" alt="Eloquent">
+                                <h3>Eloquent</h3>
+                                <div class="card-details">
+                                    <p>Categories: Debate, Poetry, JAM (Just a Minute)</p>
+                                    <a href="#register-eloquent" class="inline-button">Register for Eloquent</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 5 -->
+                        <div class="card-stack_item" data-event-name="Enigma">
+                            <div class="card-content">
+                                <img src="https://placehold.co/400x300/5c2a4d/white?text=Enigma" alt="Enigma">
+                                <h3>Enigma</h3>
+                                <div class="card-details">
+                                    <p>Categories: Quiz, Treasure Hunt, Escape Room</p>
+                                    <a href="#register-enigma" class="inline-button">Register for Enigma</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Event Details -->
+                <div class="event-details-content">
+                    <h2 id="event-details-title">Artistry</h2>
+                    <div class="event-details-divider"></div>
+                    <p id="event-details-categories">
+                        Categories: Painting, Sketching, Digital Art
+                    </p>
+                    <div id="event-details-button-container">
+                        <a href="#register-art" class="inline-button">Register for Artistry</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- NEW: Navigation (Dots & Arrows) -->
+            <div class="card-stack-navigation">
+                <button id="card-stack-prev" aria-label="Previous card"><i class="fas fa-chevron-left"></i></button>
+                <div class="card-stack-dots" id="card-stack-dots">
+                    <!-- Dots will be added by JS -->
+                </div>
+                <button id="card-stack-next" aria-label="Next card"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+        </section>
+
+        <!-- 
+          Meet Our Team Section 
+          UPDATED: Added 'animate-on-scroll' class
+        -->
+        <section id="team" class="content-section animate-on-scroll">
+            <h2 class="section-title">Meet Our Team</h2>
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <!-- Add 10 placeholder team members (5*2 for seamless loop) -->
+                    <div class="team-card">
+                        <img src="https://placehold.co/100x100/ec407a/white?text=Team" alt="Team Member">
+                        <h3>Member Name</h3>
+                        <p>Class: 3 B.Sc. Psy</p>
+                        <p>Position: Core</p>
+                        <p>Role: Event Head</p>
+                        <p>Contact: +91 1234567890</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://placehold.co/100x100/8e24aa/white?text=Team" alt="Team Member">
+                        <h3>Member Name</h3>
+                        <p>Class: 2 M.Sc. CS</p>
+                        <p>Position: Core</p>
+                        <p>Role: Design Head</p>
+                        <p>Contact: +91 1234567890</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://placehold.co/100x100/d81b60/white?text=Team" alt="Team Member">
+                        <h3>Member Name</h3>
+                        <p>Class: 3 B.Sc. Eco</p>
+                        <p>Position: Volunteer</p>
+                        <p>Role: Logistics</p>
+                        <p>Contact: +91 1234567890</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://placehold.co/100x100/ad1457/white?text=Team" alt="Team Member">
+                        <h3>Member Name</h3>
+                        <p>Class: 1 M.A. Eng</p>
+                        <p>Position: Core</p>
+                        <p>Role: Content Head</p>
+                        <p>Contact: +91 1234567890</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://placehold.co/100x100/5c2a4d/white?text=Team" alt="Team Member">
+                        <h3>Member Name</h3>
+                        <p>Class: 2 B.A. Psy</p>
+                        <p>Position: Volunteer</p>
+                        <p>Role: Hospitality</p>
+                        <p>Contact: +91 1234567890</p>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="team-card">
+                        <img src="https://placehold.co/100x100/ec407a/white?text=Team" alt="Team Member">
+                        <h3>Member Name</h3>
+                        <p>Class: 3 B.Sc. Psy</p>
+                        <p>Position: Core</p>
+                        <p>Role: Event Head</p>
+                        <p>Contact: +91 1234567890</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://placehold.co/100x100/8e24aa/white?text=Team" alt="Team Member">
+                        <h3>Member Name</h3>
+                        <p>Class: 2 M.Sc. CS</p>
+                        <p>Position: Core</p>
+                        <p>Role: Design Head</p>
+                        <p>Contact: +91 1234567890</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://placehold.co/100x100/d81b60/white?text=Team" alt="Team Member">
+                        <h3>Member Name</h3>
+                        <p>Class: 3 B.Sc. Eco</p>
+                        <p>Position: Volunteer</p>
+                        <p>Role: Logistics</p>
+                        <p>Contact: +91 1234567890</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://placehold.co/100x100/ad1457/white?text=Team" alt="Team Member">
+                        <h3>Member Name</h3>
+                        <p>Class: 1 M.A. Eng</p>
+                        <p>Position: Core</p>
+                        <p>Role: Content Head</p>
+                        <p>Contact: +91 1234567890</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://placehold.co/100x100/5c2a4d/white?text=Team" alt="Team Member">
+                        <h3>Member Name</h3>
+                        <p>Class: 2 B.A. Psy</p>
+                        <p>Position: Volunteer</p>
+                        <p>Role: Hospitality</p>
+                        <p>Contact: +91 1234567890</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 
+      NEW: Redesigned Footer Section 
+      UPDATED: Added 'animate-on-scroll' class
+    -->
+    <footer class="animate-on-scroll">
+        <div class="footer-container">
+            <!-- Column 1: Logo and About -->
+            <div class="footer-column about">
+                <div class="footer-logo">
+                    <img src="blossoms_logo.png" alt="Blossoms Logo">
+                    <h3>Blossoms 2025</h3>
+                </div>
+                <p>
+                    Blossoms is the intra-deanery cultural fest at Christ (Deemed To Be University) Bangalore, School of Sciences.
+                </p>
+            </div>
+            
+            <!-- Column 2: Quick Links -->
+            <div class="footer-column links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#schedules">Schedules</a></li>
+                    <li><a href="#winners">Winners</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Socials and Contact -->
+            <div class="footer-column social">
+                <h4>Follow Us</h4>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <h4>Contact</h4>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> 
+                    Christ (Deemed To Be University), Bangalore
+                </p>
+                <p>
+                    <i class="fas fa-envelope"></i>
+                    contact@blossoms.com
+                </p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>
+                © 2025 Blossoms - School of Sciences, Christ (Deemed To Be University). All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- Link to the JavaScript file -->
+    <!-- 'defer' ensures it runs after the HTML is parsed -->
+    <script src="scriptindex.js" defer></script>
 </body>
 </html>
+
