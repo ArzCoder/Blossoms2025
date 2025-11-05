@@ -1,32 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | Blossoms 2025</title>
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Blossoms</title>
+    
+    <!-- Link to the MAIN stylesheet (for header, footer, and theme) -->
+    <link rel="stylesheet" href="styleindex.css">
+    
+    <!-- Link to the NEW stylesheet (for this page's content only) -->
+    <link rel="stylesheet" href="styleabout.css">
+    
+    <!-- Icon library for trophies & footer -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-  
-  <section class="about-section">
-    <h2>About Blossoms 2025</h2>
-    <p>Blossoms 2025 is the annual cultural and creative fest organized by Team Onyx. It celebrates innovation, talent, and unity through various events that bring our campus to life. We believe every participant adds a new color to our vibrant celebration!</p>
-  </section>
+    <!-- 
+      Header (Final State)
+      This is the same header from index.html, but without the
+      '.logo-center' or '.animation-element' classes, so it
+      loads instantly.
+    -->
+    <header id="main-header">
+        <!-- The logo container -->
+        <div id="logo-container">
+            <img src="blossoms_logo.png" alt="Blossoms Logo" id="blossoms-logo">
+        </div>
 
-  <!-- ======= CAROUSEL ======= -->
-<section class="carousel-container">
-  <div class="carousel">
-    <div class="carousel-slide"><img src="image1.jpg" alt="Blossoms Event Image 1"></div>
-    <div class="carousel-slide"><img src="image2.jpg" alt="Blossoms Event Image 2"></div>
-    <div class="carousel-slide"><img src="image3.jpg" alt="Blossoms Event Image 3"></div>
-  </div>
+        <!-- The nav links -->
+        <nav id="main-nav">
+            <a href="index.html#home">Home</a>
+            <a href="#about">About</a>
+            <a href="index.html#events">Events</a>
+            <a href="#schedules">Schedules</a>
+            <a href="index.html#winners">Winners</a>
+            <a href="#contact">Contact Us</a>
+        </nav>
 
-  <button class="prev" onclick="prevSlide()">❮</button>
-  <button class="next" onclick="nextSlide()">❯</button>
-</section>
+        <!-- Collage Logo Container -->
+        <div id="collage-logo-container">
+            <img src="https://placehold.co/180x180/f3e5f5/5c2a4d?text=Collage+Logo" alt="Collage Logo" id="collage-logo">
+        </div>
+    </header>
+
+    <!-- 
+      Main Page Content
+    -->
+    <main id="main-content">
+        
+        <!-- About Hero Section -->
+        <section id="about-hero" class="content-section animate-on-scroll">
+            <h1 class="section-title">About Blossoms</h1>
+            <p class="about-subtitle">"In the heart of Christ's vibrant hue, where talents bloom in a colorful brew..."</p>
+        </section>
+
+        <!-- Mission & Vision Section -->
+        <section id="mission-vision" class="content-section animate-on-scroll">
+            <div class="mission-vision-container">
+                <div class="mission-card">
+                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                    <p>To provide a dynamic platform for students of the School of Sciences to showcase their diverse talents, foster a spirit of healthy competition, and cultivate a vibrant campus culture rooted in creativity and excellence.</p>
+                </div>
+                <div class="mission-card">
+                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>To be the most anticipated and inclusive cultural fest, nurturing the next generation of artists, performers, and leaders by encouraging participation, celebrating diversity, and promoting artistic expression in all its forms.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Section -->
+        <section id="history" class="content-section animate-on-scroll">
+            <h2 class="section-title">A Legacy of Excellence</h2>
+            <div class="timeline">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>2018 - The Genesis</h3>
+                        <p>Blossoms was first conceptualized as a small-scale intra-departmental event. The first fest saw 500+ participants in 10 events.</p>
+                    </div>
+                </div>
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>2020 - Going Digital</h3>
+                        <p>In response to global challenges, Blossoms successfully transitioned to a fully online format, engaging over 3,000 students from their homes.</p>
+                    </div>
+                </div>
+                <!-- Timeline Item 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>2023 - The Grand Return</h3>
+                        <p>The fest returned to campus with unprecedented scale, featuring 50+ events across all categories and participation from all 7,000 students.</p>
+                    </div>
+                </div>
+                <!-- Timeline Item 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>2025 - Brighter Blooms</h3>
+                        <p>This year, Blossoms aims to 'Be the Best' with new exciting categories, professional workshops, and a focus on service and artistic excellence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Faculty Coordinators Section -->
+        <section id="faculty" class="content-section animate-on-scroll">
+            <h2 class="section-title">Meet the Faculty Coordinators</h2>
+            <div class="faculty-grid">
+                <!-- Faculty Card 1 -->
+                <div class="faculty-card">
+                    <img src="https://placehold.co/150x150/8e24aa/white?text=Dr.+Name" alt="Faculty Coordinator">
+                    <h3>Dr. Evelyn Reed</h3>
+                    <p>Head of Department, Life Sciences</p>
+                </div>
+                <!-- Faculty Card 2 -->
+                <div class="faculty-card">
+                    <img src="https://placehold.co/150x150/d81b60/white?text=Prof.+Name" alt="Faculty Coordinator">
+                    <h3>Prof. Samuel Chen</h3>
+                    <p>Department of Computer Science</p>
+                </div>
+                <!-- Faculty Card 3 -->
+                <div class="faculty-card">
+                    <img src="https://placehold.co/150x150/5c2a4d/white?text=Dr.+Name" alt="Faculty Coordinator">
+                    <h3>Dr. Anita Brown</h3>
+                    <p>Department of Psychology</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 
+      Footer 
+      This is the same footer from index.html
+    -->
+    <footer class="animate-on-scroll">
+        <div class="footer-container">
+            <!-- Column 1: Logo and About -->
+            <div class="footer-column about">
+                <div class="footer-logo">
+                    <img src="blossoms_logo.png" alt="Blossoms Logo">
+                    <h3>Blossoms 2025</h3>
+                </div>
+                <p>
+                    Blossoms is the intra-deanery cultural fest at Christ (Deemed To Be University) Bangalore, School of Sciences.
+                </p>
+            </div>
+            
+            <!-- Column 2: Quick Links -->
+            <div class="footer-column links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="index.html#events">Events</a></li>
+                    <li><a href="#schedules">Schedules</a></li>
+                    <li><a href="index.html#winners">Winners</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Socials and Contact -->
+            <div class="footer-column social">
+                <h4>Follow Us</h4>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <h4>Contact</h4>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> 
+                    Christ (Deemed To Be University), Bangalore
+                </p>
+                <p>
+                    <i class="fas fa-envelope"></i>
+                    contact@blossoms.com
+                </p>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>
+                © 2025 Blossoms - School of Sciences, Christ (Deemed To Be University). All rights reserved.
+            </p>
+        </div>
+    </footer>
 
 
+    <!-- 
+      Link to the MAIN JavaScript file 
+      This is safe now because we added checks.
+    -->
+    <script src="scriptindex.js" defer></script>
 </body>
 </html>

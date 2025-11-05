@@ -1,18 +1,27 @@
-// Wait for the entire page to load before starting the animation
+/**
+ * Main script for Blossoms Website
+ * * Includes:
+ * 1. Intro Animation (Home Page)
+ * 2. 3D Card Stack (Home Page)
+ * 3. Scroll Animations (All Pages)
+ */
+
+// Wait for the entire page to load before starting any animations
 window.addEventListener('load', () => {
 
-    // ==========================================
-    // --- 1. INTRO ANIMATION (LOGO & NAV) ---
-    // ==========================================
+    // --- 1. INTRO ANIMATION (Home Page Only) ---
+    // We check if the particle container exists, so this only runs on index.html
+    const particleContainer = document.getElementById('flower-particles-container');
+    if (particleContainer) {
+        startMainAnimation();
+    }
 
     /**
-     * This function contains the ENTIRE logo animation.
-     * It's called directly on page load.
+     * Function to run the entire logo intro animation.
      */
     function startMainAnimation() {
         const header = document.getElementById('main-header');
-        const particleContainer = document.getElementById('flower-particles-container');
-
+        
         // --- Animation Timeline ---
 
         // SCENE 1: Flower particles
@@ -38,12 +47,10 @@ window.addEventListener('load', () => {
         }, 4500); // 4.5s delay
 
         // SCENE 4: Show Final Navigation
-        // This listens for the 'transform' (move) animation to end
         if (header) {
             header.addEventListener('transitionend', (event) => {
                 // We only care about the 'transform' transition ending
                 if (event.propertyName === 'transform') {
-                    // Check if the header is now in its final (non-center) state
                     if (!header.classList.contains('logo-center')) {
                         showFinalNav();
                     }
@@ -52,375 +59,370 @@ window.addEventListener('load', () => {
         }
     }
 
-    /**
-     * --- Scene 1 Helper ---
-     * Creates a stream of flower particles.
-     */
-    function createFlowerStream(count, duration, container) {
-        if (!container) return; // Fail safe
-        const interval = duration / count;
-        const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
-        
-        for (let i = 0; i < count; i++) {
-            setTimeout(() => {
-                const flower = document.createElement('div');
-                flower.className = 'flower-particle';
-
-                // Assign a corner to this flower
-                const corner = corners[i % 4];
-
-                const size = Math.random() * 20 + 10;
-                flower.style.width = `${size}px`;
-                flower.style.height = `${size}px`;
-                flower.style.backgroundColor = Math.random() > 0.5 ? 'var(--primary-pink)' : 'var(--darker-pink)';
-
-                container.appendChild(flower);
-                animateFlower(flower, corner); // Animate this specific flower
-
-            }, i * interval);
-        }
+    // --- 2. 3D CARD STACK (Home Page Only) ---
+    // We check if the card stack exists
+    const cardStack = document.getElementById('event-card-stack');
+    if (cardStack) {
+        initCardStack(cardStack);
     }
 
     /**
-     * --- Scene 1 Helper ---
-     * Animates a single flower from one of four corners to the center.
+     * Function to initialize the 3D card stack.
+     * @param {HTMLElement} stackContainer - The main container element for the stack.
      */
-    function animateFlower(flowerElement, startCorner) {
-        let startX, startY;
-
-        // Define start positions based on corner (at screen corners)
-        switch (startCorner) {
-            case 'top-left':    startX = 0; startY = 0;   break;
-            case 'top-right':   startX = 100; startY = 0;  break;
-            case 'bottom-left': startX = 0; startY = 100;  break;
-            case 'bottom-right':startX = 100; startY = 100; break;
-        }
-
-        // All flowers fly to the center cluster (45vw-55vw, 45vh-55vh)
-        const endX = Math.random() * 10 + 45; 
-        const endY = Math.random() * 10 + 45; 
-
-        // Use Web Animations API
-        flowerElement.animate([
-            { transform: `translate(${startX}vw, ${startY}vh) scale(1)`, opacity: 0.7 },
-            { transform: `translate(${endX - startX}vw, ${endY - startY}vh) scale(0)`, opacity: 0 }
-        ], {
-            duration: Math.random() * 2000 + 1000, // 1s to 3s duration
-            easing: 'cubic-bezier(0.4, 0, 0.2, 1)', // Ease-in
-            fill: 'forwards'
-        });
-
-        // Remove the DOM element after animation
-        setTimeout(() => {
-            flowerElement.remove();
-        }, 3000);
-    }
-
-
-    /**
-     * --- Scene 2 Helper ---
-     * Fades in a DOM element by ID.
-     */
-    function showElement(elementId) {
-        const el = document.getElementById(elementId);
-        if (el) {
-            el.style.visibility = 'visible';
-            el.style.opacity = '1';
-        }
-    }
-
-
-    /**
-     * --- Scene 4 Helper (REWRITTEN) ---
-     * Shows the final nav bar, collage logo, links, and main content in sequence.
-     */
-    function showFinalNav() {
-        const collageLogo = document.getElementById('collage-logo-container');
-        const navBar = document.getElementById('main-nav');
-        const navLinks = document.querySelectorAll('#main-nav a');
-
-        // 1. Fade in the Collage Logo (top right)
-        if (collageLogo) {
-            collageLogo.style.opacity = '1';
-        }
-
-        // 2. Fade in the Nav Bar background
-        if (navBar) {
-            navBar.style.opacity = '1';
-        }
-
-        // 3. Stagger-fade in the nav links
-        // This happens *after* the nav bar background is visible
-        setTimeout(() => {
-            navLinks.forEach((link, index) => {
-                // Stagger the animation
-                setTimeout(() => {
-                    link.classList.add('visible');
-                }, index * 100); // 100ms delay between each link
-            });
-        }, 100); // Short delay to let nav background fade in
-
-        // 4. After the links start appearing, fade in the main content
-        // Time it to appear just as the last link is fading in.
-        setTimeout(() => {
-            showElement('hero'); // UPDATED: Was 'main-content'
-        }, navLinks.length * 100); // Stagger after the last link
-    }
-
-    // Start the intro animation as soon as the page is loaded
-    startMainAnimation();
-
-    // ==========================================
-    // --- 2. EVENT CATEGORY CARD STACK ---
-    // ==========================================
-
-    /**
-     * Initializes the 3D card stack functionality
-     */
-    function initCardStack(stackId) {
-        const stackContainer = document.getElementById(stackId);
-        if (!stackContainer) return; // Don't run if element doesn't exist
-
-        // Get all elements
+    function initCardStack(stackContainer) {
         const cards = Array.from(stackContainer.getElementsByClassName('card-stack_item'));
         const nextButton = document.getElementById('card-stack-next');
         const prevButton = document.getElementById('card-stack-prev');
         
-        // Detail elements on the right
-        const detailTitle = document.getElementById('event-details-title');
-        const detailCategories = document.getElementById('event-details-categories');
-        const detailButtonContainer = document.getElementById('event-details-button-container');
+        // Details content
+        const detailsTitle = document.getElementById('event-details-title');
+        const detailsText = document.getElementById('event-details-text');
+        const detailsButtonContainer = document.getElementById('event-details-button-container');
 
-        // Navigation dots
+        // Dots navigation
         const dotsContainer = document.getElementById('card-stack-dots');
-        let dots = []; // To store the dot elements
+        let dots = [];
 
-        let activeIndex = 0; // Tracks the current active card
-
-        // Create a dot for each card
-        cards.forEach((card, index) => {
-            const dot = document.createElement('button');
-            dot.className = 'card-stack-dot';
-            dot.setAttribute('aria-label', `Go to card ${index + 1}`);
-            
-            // Add click event to move to that card
-            dot.addEventListener('click', () => {
-                activeIndex = index;
-                updateCardStack();
+        // Create dots
+        if (dotsContainer) {
+            cards.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = 'card-stack-dot';
+                dot.setAttribute('aria-label', `Go to card ${index + 1}`);
+                dot.addEventListener('click', () => {
+                    setActiveIndex(index);
+                });
+                dotsContainer.appendChild(dot);
+                dots.push(dot);
             });
-            
-            dotsContainer.appendChild(dot);
-            dots.push(dot); // Add to our array
-        });
+        }
+
+        let activeIndex = 0;
 
         /**
-         * This function is the main controller. It updates all card classes,
-         * dot classes, and the details text based on the `activeIndex`.
+         * Updates all cards and details based on the activeIndex.
          */
         function updateCardStack() {
-            // 1. Update Card Classes (is-active, is-prev, is-next)
+            // 1. Update Card classes
             cards.forEach((card, index) => {
                 card.classList.remove('is-active', 'is-prev', 'is-next');
 
                 if (index === activeIndex) {
                     card.classList.add('is-active');
                 } else if (index === (activeIndex - 1 + cards.length) % cards.length) {
-                    // This handles the wrap-around for the previous card
                     card.classList.add('is-prev');
                 } else if (index === (activeIndex + 1) % cards.length) {
-                    // This handles the wrap-around for the next card
                     card.classList.add('is-next');
                 }
             });
 
-            // 2. Update Dot Classes
-            dots.forEach((dot, index) => {
-                if (index === activeIndex) {
-                    dot.classList.add('is-active');
-                } else {
-                    dot.classList.remove('is-active');
-                }
-            });
-
-            // 3. Update Details Text (on the right)
+            // 2. Update Details content
             const activeCard = cards[activeIndex];
-            const eventName = activeCard.getAttribute('data-event-name');
-            const details = activeCard.querySelector('.card-details'); // Get hidden details
+            const title = activeCard.querySelector('h3').textContent;
+            const detailsHTML = activeCard.querySelector('.card-details').innerHTML;
+            
+            if (detailsTitle) detailsTitle.textContent = title;
+            if (detailsText) detailsText.innerHTML = detailsHTML;
 
-            if (details) {
-                // Find the hidden p tag and a tag
-                const categories = details.querySelector('p').textContent;
-                const button = details.querySelector('a').cloneNode(true); // Clone button
-                
-                // Set the text content on the right
-                detailTitle.textContent = eventName;
-                detailCategories.textContent = categories;
-                
-                // Update the register button
-                detailButtonContainer.innerHTML = ''; // Clear old button
-                detailButtonContainer.appendChild(button); // Add new button
+            // 3. Update Dots
+            if (dots.length > 0) {
+                dots.forEach((dot, index) => {
+                    if (index === activeIndex) {
+                        dot.classList.add('is-active');
+                    } else {
+                        dot.classList.remove('is-active');
+                    }
+                });
             }
         }
 
-        // --- Event Listeners for Buttons ---
-        nextButton.addEventListener('click', () => {
-            activeIndex = (activeIndex + 1) % cards.length; // Move next, wrap to start
+        /**
+         * Safely sets the active index and updates the stack.
+         * @param {number} index - The new index to set.
+         */
+        function setActiveIndex(index) {
+            activeIndex = index;
             updateCardStack();
-        });
+        }
 
-        prevButton.addEventListener('click', () => {
-            activeIndex = (activeIndex - 1 + cards.length) % cards.length; // Move prev, wrap to end
-            updateCardStack();
-        });
+        // Click next
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                setActiveIndex((activeIndex + 1) % cards.length);
+            });
+        }
 
-        // Set the initial state (show card 1)
+        // Click prev
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                setActiveIndex((activeIndex - 1 + cards.length) % cards.length);
+            });
+        }
+
+        // Set initial state
         updateCardStack();
     }
 
-    // Initialize the event card stack
-    initCardStack('event-card-stack');
 
-
-    // ==========================================
-    // --- 3. ACHIEVEMENTS SCROLL ANIMATION ---
-    // ==========================================
-    
-    /**
-     * This function runs the animation for the achievements section
-     * using the Web Animations API when it scrolls into view.
-     */
-    function animateAchievements() {
-        const cards = document.querySelectorAll('#achievements .trophy-card');
-        if (cards.length < 3) return; // Not enough cards to animate
-
-        // --- Keyframes ---
-        // Keyframes for the icons
-        const iconKeyframesLeft = [
-            { transform: 'translate(-150px, -50px) scale(0.5)', opacity: 0 },
-            { transform: 'translate(0, 0) scale(1)', opacity: 1 }
-        ];
-        
-        const iconKeyframesTop = [
-            { transform: 'translateY(-150px) scale(0.5)', opacity: 0 },
-            { transform: 'translate(0, 0) scale(1)', opacity: 1 }
-        ];
-
-        const iconKeyframesRight = [
-            { transform: 'translate(150px, -50px) scale(0.5)', opacity: 0 },
-            { transform: 'translate(0, 0) scale(1)', opacity: 1 }
-        ];
-        
-        // Keyframes for the text (h3 and p)
-        const textKeyframes = [
-            { transform: 'translateY(20px)', opacity: 0 },
-            { transform: 'translateY(0)', opacity: 1 }
-        ];
-
-        // --- Timings ---
-        const iconTiming = { duration: 1000, easing: 'ease-out', fill: 'forwards' };
-        const textTiming = { duration: 500, easing: 'ease-out', fill: 'forwards' };
-
-        // --- Get elements for Card 1 (Left) ---
-        const card1Icon = cards[0].querySelector('.trophy-image'); // UPDATED
-        const card1H3 = cards[0].querySelector('h3');
-        const card1P = cards[0].querySelector('p');
-        
-        // Animate elements if they exist
-        if (card1Icon) {
-            card1Icon.style.opacity = 0; // Set initial state
-            card1Icon.animate(iconKeyframesLeft, { ...iconTiming, delay: 0 });
-        }
-        if (card1H3) {
-            card1H3.style.opacity = 0;
-            card1H3.animate(textKeyframes, { ...textTiming, delay: 1000 }); // After icon
-        }
-        if (card1P) {
-            card1P.style.opacity = 0;
-            card1P.animate(textKeyframes, { ...textTiming, delay: 1100 });
-        }
-
-
-        // --- Get elements for Card 2 (Top/Center) ---
-        const card2Icon = cards[1].querySelector('.trophy-image'); // UPDATED
-        const card2H3 = cards[1].querySelector('h3');
-        const card2P = cards[1].querySelector('p');
-
-        if (card2Icon) {
-            card2Icon.style.opacity = 0;
-            card2Icon.animate(iconKeyframesTop, { ...iconTiming, delay: 200 }); // Staggered start
-        }
-        if (card2H3) {
-            card2H3.style.opacity = 0;
-            card2H3.animate(textKeyframes, { ...textTiming, delay: 1200 });
-        }
-        if (card2P) {
-            card2P.style.opacity = 0;
-            card2P.animate(textKeyframes, { ...textTiming, delay: 1300 });
-        }
-
-        // --- Get elements for Card 3 (Right) ---
-        const card3Icon = cards[2].querySelector('.trophy-image'); // UPDATED
-        const card3H3 = cards[2].querySelector('h3');
-        const card3P = cards[2].querySelector('p');
-        
-        if (card3Icon) {
-            card3Icon.style.opacity = 0;
-            card3Icon.animate(iconKeyframesRight, { ...iconTiming, delay: 400 }); // Staggered start
-        }
-        if (card3H3) {
-            card3H3.style.opacity = 0;
-            card3H3.animate(textKeyframes, { ...textTiming, delay: 1400 });
-        }
-        if (card3P) {
-            card3P.style.opacity = 0;
-            card3P.animate(textKeyframes, { ...textTiming, delay: 1500 });
-        }
-    }
-
-    /**
-     * Sets up Intersection Observers to trigger animations when elements scroll into view.
-     */
-    function initScrollAnimations() {
-        // Get all elements that should fade in on scroll
-        const scrollElements = document.querySelectorAll('.animate-on-scroll');
-        
-        // Create an observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // When the element is 20% visible
-                if (entry.isIntersecting) {
-                    
-                    // Check which section is intersecting
-                    if (entry.target.id === 'achievements') {
-                        animateAchievements(); // Run the trophy animation
-                        observer.unobserve(entry.target); // Stop observing
-                    }
-                    
-                    // Check for generic scroll-in elements
-                    if (entry.target.classList.contains('animate-on-scroll')) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // Stop observing
-                    }
-                }
-            });
-        }, { 
-            threshold: 0.2 // Trigger when 20% of the element is visible
-        });
-
-        // Add the 'achievements' section to the observer
-        const achievementsSection = document.getElementById('achievements');
-        if (achievementsSection) {
-            observer.observe(achievementsSection);
-        }
-
-        // Add all generic scroll elements to the observer
-        scrollElements.forEach(el => {
-            observer.observe(el);
-        });
-    }
-
-    // Initialize all scroll-triggered animations
+    // --- 3. SCROLL ANIMATIONS (All Pages) ---
+    // This function will run on all pages
     initScrollAnimations();
 
-}); // End of window.addEventListener('load')
+});
+
+
+// ==========================================
+// HELPER FUNCTIONS
+// (These are outside the 'load' event so other functions can use them)
+// ==========================================
+
+/**
+ * --- Helper for Scene 1 ---
+ * Creates a stream of flower particles.
+ * @param {number} count - Number of particles.
+ * @param {number} duration - Total duration of the stream (ms).
+ * @param {HTMLElement} container - The container to append particles to.
+ */
+function createFlowerStream(count, duration, container) {
+    if (!container) return; // Fail safe
+    const interval = duration / count;
+    const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+    for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+            const flower = document.createElement('div');
+            flower.className = 'flower-particle';
+
+            // Assign a corner to this flower
+            const corner = corners[i % 4];
+
+            const size = Math.random() * 20 + 10;
+            flower.style.width = `${size}px`;
+            flower.style.height = `${size}px`;
+
+            flower.style.backgroundColor = Math.random() > 0.5 ? 'var(--primary-pink)' : 'var(--darker-pink)';
+
+            container.appendChild(flower);
+            animateFlower(flower, corner);
+
+        }, i * interval);
+    }
+}
+
+/**
+ * --- Helper for Scene 1 ---
+ * Animates a single flower from one of four corners
+ * @param {HTMLElement} flowerElement - The particle element.
+ * @param {string} startCorner - 'top-left', 'top-right', 'bottom-left', or 'bottom-right'.
+ */
+function animateFlower(flowerElement, startCorner) {
+    let startX, startY, endX, endY;
+
+    // Define start positions based on corner (at screen corners)
+    switch (startCorner) {
+        case 'top-left':
+            startX = 0; // Start at top-left corner
+            startY = 0;
+            break;
+        case 'top-right':
+            startX = 100; // Start at top-right corner
+            startY = 0;
+            break;
+        case 'bottom-left':
+            startX = 0; // Start at bottom-left corner
+            startY = 100;
+            break;
+        case 'bottom-right':
+            startX = 100; // Start at bottom-right corner
+            startY = 100;
+            break;
+    }
+
+    // All flowers fly to the center cluster
+    endX = Math.random() * 10 + 45; // 45vw to 55vw
+    endY = Math.random() * 10 + 45; // 45vh to 55vh
+
+    flowerElement.animate([
+        {
+            transform: `translate(${startX}vw, ${startY}vh) scale(1)`,
+            opacity: 0.7
+        },
+        {
+            // Fly to the center cluster point
+            transform: `translate(${endX - startX}vw, ${endY - startY}vh) scale(0)`,
+            opacity: 0
+        }
+    ], {
+        duration: Math.random() * 2000 + 1000, // 1s to 3s duration
+        easing: 'cubic-bezier(0.4, 0, 0.2, 1)', // Ease-in
+        fill: 'forwards'
+    });
+
+    // Remove the DOM element after animation
+    setTimeout(() => {
+        flowerElement.remove();
+    }, 3000);
+}
+
+
+/**
+ * --- Helper for Scene 2 ---
+ * Fades in a DOM element by ID.
+ * @param {string} elementId - The ID of the element to show.
+ */
+function showElement(elementId) {
+    const el = document.getElementById(elementId);
+    if (el) {
+        el.style.visibility = 'visible';
+        el.style.opacity = '1';
+    }
+}
+
+
+/**
+ * --- Helper for Scene 4 ---
+ * Shows the final nav bar, collage logo, links, and main content in sequence.
+ */
+function showFinalNav() {
+    const collageLogo = document.getElementById('collage-logo-container');
+    const navBar = document.getElementById('main-nav');
+    const navLinks = document.querySelectorAll('#main-nav a');
+
+    // 1. Fade in the Collage Logo (top right)
+    if (collageLogo) {
+        collageLogo.style.opacity = '1';
+    }
+
+    // 2. Fade in the Nav Bar background
+    if (navBar) {
+        navBar.style.opacity = '1';
+    }
+
+    // 3. Stagger-fade in the nav links
+    // This happens *after* the nav bar background is visible
+    setTimeout(() => {
+        navLinks.forEach((link, index) => {
+            // Stagger the animation
+            setTimeout(() => {
+                link.classList.add('visible');
+            }, index * 100); // 100ms delay between each link
+        });
+    }, 100); // Short delay to let nav background fade in
+
+    // 4. After the links start appearing, fade in the main content
+    // We'll time it to appear just as the last link is fading in.
+    const heroElement = document.getElementById('hero');
+    if (heroElement) {
+        setTimeout(() => {
+            heroElement.style.visibility = 'visible';
+            heroElement.style.opacity = '1';
+        }, navLinks.length * 100); // Stagger after the last link
+    }
+}
+
+
+/**
+ * --- Helper for Scroll Animations ---
+ * Sets up IntersectionObserver to animate elements as they scroll into view.
+ */
+function initScrollAnimations() {
+    const observerOptions = {
+        root: null, // Use the viewport
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // --- CUSTOM: Handle Trophy Animation ---
+                if (entry.target.id === 'achievements') {
+                    // Check if animation has already run
+                    if (entry.target.classList.contains('is-animated')) return;
+                    
+                    entry.target.classList.add('is-animated');
+                    animateTrophies();
+                } 
+                // --- GENERIC: Handle all other animations ---
+                else {
+                    entry.target.classList.add('is-visible');
+                }
+                
+                // Stop observing generic elements after they're visible
+                if (!entry.target.id === 'achievements') {
+                    observer.unobserve(entry.target);
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe all generic animated elements
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => observer.observe(el));
+
+    // --- CUSTOM: Observe Trophy Section ---
+    const achievementsSection = document.getElementById('achievements');
+    if (achievementsSection) {
+        observer.observe(achievementsSection);
+    }
+}
+
+/**
+ * --- Helper for Trophy Animation ---
+ * Runs the custom keyframe animation for the trophies.
+ */
+function animateTrophies() {
+    const trophies = document.querySelectorAll('.trophy-card .trophy-image');
+    const texts = document.querySelectorAll('.trophy-card h3, .trophy-card p');
+
+    // Keyframes for each trophy
+    const keyframes = [
+        [ // Trophy 1 (from left)
+            { transform: 'translateX(-100vw) scale(0.5)', opacity: 0 },
+            { transform: 'translateX(0) scale(1)', opacity: 1 }
+        ],
+        [ // Trophy 2 (from top)
+            { transform: 'translateY(-50vh) scale(0.5)', opacity: 0 },
+            { transform: 'translateY(0) scale(1)', opacity: 1 }
+        ],
+        [ // Trophy 3 (from right)
+            { transform: 'translateX(100vw) scale(0.5)', opacity: 0 },
+            { transform: 'translateX(0) scale(1)', opacity: 1 }
+        ]
+    ];
+
+    const animationOptions = {
+        duration: 1000, // 1 second
+        easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)', // Ease-out quint
+        fill: 'forwards'
+    };
+
+    // 1. Animate Trophies
+    let longestAnimationTime = 0;
+    trophies.forEach((trophy, index) => {
+        if (keyframes[index]) {
+            // Stagger the start time
+            const delay = index * 200; // 0ms, 200ms, 400ms
+            animationOptions.delay = delay;
+            trophy.animate(keyframes[index], animationOptions);
+            
+            longestAnimationTime = animationOptions.duration + delay;
+        }
+    });
+
+    // 2. Animate Texts (after trophies land)
+    setTimeout(() => {
+        texts.forEach((text, index) => {
+            text.animate([
+                { opacity: 0, transform: 'translateY(20px)' },
+                { opacity: 1, transform: 'translateY(0)' }
+            ], {
+                duration: 500,
+                easing: 'ease-out',
+                fill: 'forwards',
+                delay: index * 100 // Stagger each text element
+            });
+        });
+    }, longestAnimationTime - 200); // Start text fade-in slightly before trophies stop
+}
 
