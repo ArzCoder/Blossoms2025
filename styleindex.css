@@ -63,50 +63,25 @@ body {
     will-change: transform, opacity;
 }
 
-/* --- Scene 2 & 3: The Header "Hero" Animation --- */
+/* --- Header --- */
 
 #main-header {
-    /* FINAL state */
     position: fixed;
     top: 20px;
     left: 0;
     display: flex;
     align-items: center;
-    /* NEW: space-between layout */
-    justify-content: space-between; 
+    /* Layout: collage left, nav center, Blossoms right */
+    justify-content: space-between;
     z-index: 20;
     width: 100%;
-    padding: 0 40px; /* Padding for side logos */
-    box-sizing: border-box; /* Include padding in width */
-    
-    transition: top 2s ease-in-out,
-                left 2s ease-in-out,
-                transform 2s ease-in-out,
-                opacity 1s ease-in-out,
-                justify-content 2s ease-in-out;
-}
-
-/* STARTING state */
-#main-header.logo-center {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* Start with logo centered */
-    justify-content: center; 
-    width: auto;
-    padding: 0;
+    padding: 0 40px;
+    box-sizing: border-box;
 }
 
 #logo-container {
     flex-shrink: 0;
-    /* FINAL state: scale is 1, positioned left */
-    transform: scale(1);
-    transition: transform 2s ease-in-out;
-}
-
-#main-header.logo-center #logo-container {
-    /* STARTING state: 2x larger */
-    transform: scale(2);
+    order: -1; /* Ensure Blossoms is first (left) */
 }
 
 #blossoms-logo {
@@ -125,7 +100,7 @@ nav {
     flex-wrap: wrap;
     justify-content: center; /* Center the links */
     gap: 35px; /* UPDATED: Increased gap */
-    
+
     /* STARTING state: nav is hidden */
     opacity: 0;
     transition: opacity 0.5s ease-in-out; /* JS will trigger this */
@@ -144,12 +119,10 @@ nav {
     /* Set a max-width so it doesn't get TOO wide on large screens */
     max-width: 800px;
     /* --- END NEW --- */
+    order: 0; /* Ensure nav is in the middle */
 }
 
-/* Hide nav when logo is centered */
-#main-header.logo-center nav {
-    display: none;
-}
+/* Nav is always visible after animation */
 
 nav a {
     text-decoration: none;
@@ -197,6 +170,7 @@ nav a:hover::after {
     /* STARTING state: hidden */
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    order: 1; /* Ensure collage is last (right) */
 }
 
 #collage-logo {
@@ -206,10 +180,7 @@ nav a:hover::after {
     border-radius: 50%; /* Optional: if logo is round */
 }
 
-/* Hide collage logo when main logo is centered */
-#main-header.logo-center #collage-logo-container {
-    display: none;
-}
+/* Collage logo is always visible after animation */
 
 
 /* --- Main Content Styling --- */
@@ -414,6 +385,11 @@ nav a:hover::after {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
     min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100px; /* Fixed height for card-like appearance */
 }
 .event-hint-card:hover {
     transform: translateY(-5px);
@@ -852,6 +828,144 @@ footer {
     margin: 0;
 }
 
+/* --- Countdown Container --- */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.time-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-segment {
+    display: flex;
+    gap: 10px; /* Space between the two digits */
+}
+
+.time-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark-purple);
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+/* --- Flip Card Styling --- */
+.flip-card {
+    position: relative;
+    width: 80px;
+    height: 120px;
+    font-size: 5rem; /* Number size */
+    font-weight: 700;
+    line-height: 120px;
+    color: var(--primary-pink);
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+
+    /* 3D Perspective */
+    perspective: 500px;
+}
+
+.top-half, .bottom-half {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    left: 0;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.top-half {
+    top: 0;
+    line-height: 120px; /* Aligns number */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bottom-half {
+    bottom: 0;
+    line-height: 0; /* Aligns number from top */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* --- The Flipping Elements --- */
+.flip-card::before,
+.flip-card::after {
+    content: attr(data-current); /* The current number */
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    /* Styling to match the static halves */
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--primary-pink);
+    line-height: 120px;
+}
+
+/* Top flipping part (shows NEW number) */
+.flip-card::before {
+    content: attr(data-next);
+    top: 0;
+    line-height: 120px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transform-origin: bottom center;
+    transform: rotateX(0deg); /* Start flat */
+}
+
+/* Bottom flipping part (shows CURRENT number) */
+.flip-card::after {
+    content: attr(data-current);
+    bottom: 0;
+    line-height: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transform-origin: top center;
+    transform: rotateX(0deg); /* Start flat */
+}
+
+/* --- Animation --- */
+.flip-card.is-flipping::before {
+    animation: flip-top 0.5s ease-in forwards;
+}
+
+.flip-card.is-flipping::after {
+    animation: flip-bottom 0.5s ease-in forwards;
+}
+
+@keyframes flip-top {
+    0% {
+        transform: rotateX(0deg);
+    }
+    100% {
+        transform: rotateX(-90deg);
+    }
+}
+
+@keyframes flip-bottom {
+    0% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
 /* --- Mobile adjustments --- */
 @media (max-width: 768px) {
     #main-header {
@@ -863,24 +977,11 @@ footer {
         position: relative; 
     }
 
-    /* Disable the animation on mobile */
-    #main-header.logo-center {
-        position: relative;
-        top: 0;
-        left: 0;
-        transform: none;
-        justify-content: center;
-    }
-
     #main-header,
-    #main-header.logo-center,
     #logo-container,
-    #main-header.logo-center #logo-container,
     #blossoms-logo,
     nav,
-    #main-header:not(.logo-center) nav,
     #collage-logo-container,
-    #main-header:not(.logo-center) #collage-logo-container,
     .animation-element {
         /* Reset all animation properties for mobile */
         opacity: 1;
@@ -1044,6 +1145,41 @@ footer {
       ==========================================
     */
 
+    /* Mobile countdown styles */
+    .countdown-container {
+        gap: 15px;
+    }
+
+    .flip-card {
+        width: 35px;
+        height: 60px;
+        font-size: 2rem;
+        line-height: 60px;
+        border-radius: 5px;
+    }
+
+    .top-half {
+        line-height: 60px;
+        border-radius: 5px 5px 0 0;
+    }
+    .bottom-half {
+        line-height: 0;
+        border-radius: 0 0 5px 5px;
+    }
+
+    .flip-card::before,
+    .flip-card::after {
+        line-height: 60px;
+    }
+
+    .flip-card::before {
+        line-height: 60px;
+        border-radius: 5px 5px 0 0;
+    }
+    .flip-card::after {
+        line-height: 0;
+        border-radius: 0 0 5px 5px;
+    }
 
     /* Footer mobile */
     .footer-container {

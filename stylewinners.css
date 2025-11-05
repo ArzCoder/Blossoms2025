@@ -1,0 +1,207 @@
+/*
+  This file contains styles ONLY for the 'timer.html' page.
+*/
+
+/* --- Timer Page Setup --- */
+#timer-section {
+    /* Use padding to account for the fixed header */
+    padding-top: 100px; /* UPDATED: Was 220px, reduced to lessen the gap */
+    text-align: center;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.timer-subtitle {
+    font-size: 1.5rem;
+    color: var(--dark-purple);
+    font-style: italic;
+    margin: -20px 0 40px 0;
+}
+
+/* --- Countdown Container --- */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.time-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-segment {
+    display: flex;
+    gap: 10px; /* Space between the two digits */
+}
+
+.time-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark-purple);
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+/* --- Flip Card Styling --- */
+.flip-card {
+    position: relative;
+    width: 80px;
+    height: 120px;
+    font-size: 5rem; /* Number size */
+    font-weight: 700;
+    line-height: 120px;
+    color: var(--primary-pink);
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    
+    /* 3D Perspective */
+    perspective: 500px;
+}
+
+.top-half, .bottom-half {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    left: 0;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.top-half {
+    top: 0;
+    line-height: 120px; /* Aligns number */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bottom-half {
+    bottom: 0;
+    line-height: 0; /* Aligns number from top */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* --- The Flipping Elements --- */
+.flip-card::before,
+.flip-card::after {
+    content: attr(data-current); /* The current number */
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    
+    /* Styling to match the static halves */
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--primary-pink);
+    line-height: 120px;
+}
+
+/* Top flipping part (shows NEW number) */
+.flip-card::before {
+    content: attr(data-next);
+    top: 0;
+    line-height: 120px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transform-origin: bottom center;
+    transform: rotateX(0deg); /* Start flat */
+}
+
+/* Bottom flipping part (shows CURRENT number) */
+.flip-card::after {
+    content: attr(data-current);
+    bottom: 0;
+    line-height: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transform-origin: top center;
+    transform: rotateX(0deg); /* Start flat */
+}
+
+/* --- Animation --- */
+.flip-card.is-flipping::before {
+    animation: flip-top 0.5s ease-in forwards;
+}
+
+.flip-card.is-flipping::after {
+    animation: flip-bottom 0.5s ease-in forwards;
+}
+
+@keyframes flip-top {
+    0% {
+        transform: rotateX(0deg);
+    }
+    100% {
+        transform: rotateX(-90deg);
+    }
+}
+
+@keyframes flip-bottom {
+    0% {
+        transform: rotateX(90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+/* --- Mobile Styles --- */
+@media (max-width: 768px) {
+    #timer-section {
+        padding-top: 40px; /* Mobile has no fixed header */
+    }
+
+    .countdown-container {
+        gap: 15px;
+    }
+
+    .flip-card {
+        width: 35px;
+        height: 60px;
+        font-size: 2rem;
+        line-height: 60px;
+        border-radius: 5px;
+    }
+
+    .top-half {
+        line-height: 60px;
+        border-radius: 5px 5px 0 0;
+    }
+    .bottom-half {
+        line-height: 0;
+        border-radius: 0 0 5px 5px;
+    }
+    
+    .flip-card::before,
+    .flip-card::after {
+        line-height: 60px;
+    }
+    
+    .flip-card::before {
+        line-height: 60px;
+        border-radius: 5px 5px 0 0;
+    }
+    .flip-card::after {
+        line-height: 0;
+        border-radius: 0 0 5px 5px;
+    }
+
+    .time-label {
+        font-size: 0.8rem;
+        margin-top: 10px;
+    }
+}
