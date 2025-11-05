@@ -632,6 +632,25 @@ footer {
     margin-top: -2px;
     font-style: italic;
   }
+
+  /* Calendar responsiveness */
+  .calendar {
+    grid-template-columns: repeat(7, 80px);
+    gap: 0.2rem;
+  }
+  .calendar-body div {
+    min-height: 50px;
+    font-size: 0.8rem;
+  }
+  .date-number {
+    font-size: 1rem;
+  }
+  .event-name {
+    font-size: 0.6rem;
+  }
+  .calendar-container {
+    padding: 1rem;
+  }
 }
 
 /*ANIMATIONS*/
