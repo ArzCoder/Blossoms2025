@@ -30,3 +30,29 @@ if (slides.length > 0) {
   showSlide(currentSlide);
   setInterval(nextSlide, 4000);
 }
+
+// Calendar Navigation
+const navBtns = document.querySelectorAll('.nav-btn');
+const calendarFlashcards = document.querySelectorAll('.calendar-flashcard');
+
+navBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const month = btn.getAttribute('data-month');
+    
+    // Remove active class from all buttons
+    navBtns.forEach(b => b.classList.remove('active'));
+    // Add active class to clicked button
+    btn.classList.add('active');
+    
+    // Hide all calendars
+    calendarFlashcards.forEach(card => {
+      card.style.display = 'none';
+    });
+    
+    // Show selected calendar
+    const selectedCalendar = document.getElementById(month);
+    if (selectedCalendar) {
+      selectedCalendar.style.display = 'block';
+    }
+  });
+});
