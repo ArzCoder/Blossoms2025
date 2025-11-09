@@ -17,53 +17,106 @@ body {
   flex-direction: column;
 }
 
-/* NAVBAR */
+/* =================================================== */
+/* NAVBAR: perfectly aligned version */
 .navbar {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.3);
+  align-items: center;                /* vertical centering */
+  justify-content: space-between;     /* logos left/right, nav center */
+  background: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(12px);
-  padding: 0.8rem 2rem;
+  padding: 0.6rem 2.5rem;             /* balanced height */
   position: sticky;
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  animation: slideDown 1s ease-out;
+  box-sizing: border-box;
 }
 
-.logo img {
-  width: 180px;         
-  height: 80px;        
-  object-fit: cover;
-  border-radius: 14px;
-  box-shadow: 0 0 18px rgba(255, 182, 193, 0.4);
+/* Left Logo */
+#logo-container img {
+  width: 140px;
+  height: auto;
+  max-height: 70px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(255, 182, 193, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  vertical-align: middle;
 }
 
-.logo img:hover {
+#logo-container img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 22px rgba(236, 64, 122, 0.5);
+  box-shadow: 0 0 18px rgba(236, 64, 122, 0.5);
 }
 
-.nav-links {
+/* Center Navigation */
+#main-nav {
   display: flex;
-  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  flex: 1;                            /* let it expand evenly */
 }
 
-.nav-links a {
+#main-nav a {
   text-decoration: none;
   font-weight: 600;
   color: #5c2a4d;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
   transition: color 0.3s ease;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+#main-nav a:hover,
+#main-nav a.active {
   color: #d81b60;
 }
+
+/* Right Logo */
+#collage-logo-container img {
+  width: 130px;
+  max-height: 70px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+/* Uniform baseline for all header children */
+.navbar > * {
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive behavior */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0.6rem 1.5rem;
+  }
+  #main-nav {
+    gap: 1.5rem;
+  }
+  #logo-container img,
+  #collage-logo-container img {
+    width: 120px;
+    max-height: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  #main-nav {
+    gap: 1rem;
+  }
+  #main-nav a {
+    font-size: 0.95rem;
+  }
+  #logo-container img,
+  #collage-logo-container img {
+    width: 100px;
+  }
+}
+
 
 /* Title */
 .center-heading {
@@ -119,58 +172,198 @@ body {
   color: #5c2a4d;
   font-weight: 500;
 }
+:root {
+  --nav-height: 100px; /* change this only if your navbar is taller or shorter */
+}
 
-.hero {
+/* ------------------------------------------------ */
+/* FONT IMPORTS */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@400;600&display=swap');
+
+/* ------------------------------------------------ */
+/* GLOBAL RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #ffe6f0;
+  overflow-x: hidden;
+}
+
+
+/* dynamically push hero content below navbar */
+:root {
+  --navbar-height: 120px; /* adjust if your navbar is taller/shorter */
+}
+
+/* ------------------------------------------------ */
+/* HERO SECTION */
+#hero {
+  background: linear-gradient(180deg, #ffd6e8, #ffe6f0);
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  padding: 4rem 2rem;
-  gap: 2rem;
-  text-align: left;
-}
-
-.hero-content {
-  flex: 1 1 45%;
-}
-
-.hero-content h1 {
-  font-size: 3rem;
-  color: #ad1457;
-  margin-bottom: 1rem;
-  animation: typing 3s steps(30, end), fadeInDown 1s ease-in-out;
-  white-space: nowrap;
+  text-align: center;
   overflow: hidden;
-  border-right: 3px solid #ad1457;
+  position: relative;
+  z-index: 0;
+
+  /* The only spacing you need */
+  margin-top: 100px;
+  padding: 100px 0;
+
+
+  /* pushes hero below navbar dynamically */
+  padding-top: calc(var(--navbar-height) + 80px);
+  padding-bottom: 120px;
 }
 
-.hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
-  color: #4a235a;
+/* Container */
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  max-width: 900px;
+  width: 100%;
 }
 
-.hero-content .btn {
-  background: #ec407a;
+/* ------------------------------------------------ */
+/* TEAM LOGO */
+#team-logo {
+  width: 120px;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+#team-logo:hover {
+  transform: scale(1.05);
+}
+
+/* ------------------------------------------------ */
+/* TITLES */
+#main-title {
+  font-family: "Playfair Display", serif;
+  font-size: 5rem;
+  color: #9324b6;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+#sub-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8rem;
+  color: #c2185b;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* ------------------------------------------------ */
+/* BUTTON */
+#register-button {
+  background: linear-gradient(90deg, #ff5f96, #f04a78);
   color: white;
-  padding: 0.8rem 1.5rem;
+  padding: 12px 30px;
   border-radius: 30px;
-  text-decoration: none;
-  transition: all 0.3s ease;
   font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
-.hero-content .btn:hover {
-  background: #d81b60;
-  box-shadow: 0 0 15px rgba(216, 27, 96, 0.3);
+#register-button:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, #f04a78, #e83e8c);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
+/* ------------------------------------------------ */
+/* HERO IMAGE (Flames to Flight) */
 .hero-image img {
-  flex: 1 1 45%;
-  max-width: 100%;
-  border-radius: 25px;
-  box-shadow: 0 10px 25px rgba(240, 98, 146, 0.3);
-  animation: fadeIn 2s ease, float 3s ease-in-out infinite;
+  width: 380px;
+  max-width: 90%;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+  animation: floatUp 3s ease-in-out infinite alternate;
+}
+
+/* Floating animation */
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+/* ------------------------------------------------ */
+/* FADE-UP ANIMATIONS */
+.fade-up, .fade-up-delayed {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.2s ease-out;
+}
+
+.fade-up.visible, .fade-up-delayed.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------ */
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  #main-title {
+    font-size: 4rem;
+  }
+  #sub-title {
+    font-size: 1.5rem;
+  }
+  #team-logo {
+    width: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    gap: 25px;
+  }
+
+  #main-title {
+    font-size: 3rem;
+  }
+
+  #sub-title {
+    font-size: 1.3rem;
+  }
+
+  #register-button {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+  }
+
+  .hero-image img {
+    width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  #main-title {
+    font-size: 2.4rem;
+  }
+  #sub-title {
+    font-size: 1.1rem;
+  }
+  #team-logo {
+    width: 85px;
+  }
+  .hero-image img {
+    width: 260px;
+  }
 }
 
 /*INFO*/
@@ -1055,7 +1248,7 @@ html {
 /* Centered back button */
 .back-btn-container {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 20%;
 }
 
 .center-btn {

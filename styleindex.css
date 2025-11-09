@@ -1,6 +1,4 @@
 /* --- 1. Color Palette & Base Setup --- */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;600&display=swap');
-
 :root {
     --primary-pink: #ec407a;
     --darker-pink: #d81b60;
@@ -221,14 +219,12 @@ nav a:hover::after {
     color: var(--purple);
     margin: 0;
     font-weight: 700;
-    font-family: 'Playfair Display', serif;
 }
 #sub-title {
     font-size: 2rem;
     color: var(--deep-pink);
     margin: 20px 0 10px 0;
     font-weight: 500;
-    font-family: 'Poppins', sans-serif;
 }
 #slogan {
     font-size: 1.25rem;
@@ -290,9 +286,9 @@ nav a:hover::after {
 
 /* Hero Image */
 #hero img {
-    width: 500px;
+    width: 800px;
     max-width: 800px;
-    margin-top: -100px; /* Space below button */
+    margin-top: -240px; /* Space below button */
     padding: 0 20px;
     box-sizing: border-box;
     height: auto;
