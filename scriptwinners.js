@@ -4,7 +4,7 @@
 
 // --- SET YOUR TARGET DATE HERE ---
 // Format: "Month Day, Year HH:MM:SS"
-const countdownTargetDate = new Date("Nov 23, 2025 09:00:00").getTime();
+const countdownTargetDate = new Date("Dec 18, 2025 09:00:00").getTime();
 // ---------------------------------
 
 // Get all the card elements
