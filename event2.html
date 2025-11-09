@@ -4,129 +4,245 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Literary Events | Blossoms 2025</title>
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+  <!-- Link to the MAIN stylesheet (for header, footer, and theme) -->
+  <link rel="stylesheet" href="styleindex.css">
+
+  <!-- Link to the NEW stylesheet (for this page's content only) -->
+  <link rel="stylesheet" href="styleevents.css">
+
+  <!-- Icon library for footer -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">
-      <a href="index.html">
-        <img src="logo.png" alt="Blossoms 2025 Logo">
-      </a>
-    </div>
-    <div class="center-heading">
-      <h1 class="main-title">Blossoms 2025</h1>
-      <p class="sub-title">Celebrating Nature's Beauty</p>
-    </div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="events.html" class="active">Events</a>
-    </div>
-    <div class="hamburger-menu-toggle" onclick="toggleMenu()">☰</div>
-    <div class="hamburger-menu" id="hamburger-menu">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="events.html">Events</a>
-    </div>
-  </nav>
+  <!--
+    Header (Final State)
+    This is the same header from index.html, but without the
+    '.logo-center' or '.animation-element' classes, so it
+    loads instantly.
+  -->
+  <header id="main-header">
+      <!-- The logo container -->
+      <div id="logo-container">
+          <img src="blossoms_logo.png" alt="Blossoms Logo" id="blossoms-logo">
+      </div>
 
-  <!-- Literary Event Details -->
+      <!-- The nav links -->
+      <nav id="main-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="index.html#events" class="active">Events</a>
+          <a href="schedule.html">Schedules</a>
+          <a href="winners.html">Winners</a>
+      </nav>
+
+      <!-- Collage Logo Container -->
+      <div id="collage-logo-container">
+          <img src="Christ_logo.png" alt="Collage Logo" id="collage-logo">
+      </div>
+  </header>
+
   <section class="event-details">
-    <h1 class="art-heading">Literary Events – Where minds ignite</h1>
-
+    <h1 class="art-heading">Literary Events</h1>
     <div class="date">Blossoms 2025 | Category: Literary</div>
 
     <div class="description">
-      <p>The <strong>Literary category</strong> at <em>Blossoms 2025</em> celebrates the power of words that shape our thoughts and stories.
-      Each event is a stage for expression — from poetry and prose to debate and drama, voices come alive 
-      through rhythm, reason, and emotion.Whether through storytelling, speech, or script, this category invites 
-      everyone to witness the magic of language and the art of ideas in their most captivating form.</p>
+      <p>The Literary category showcases the art of ideas—where language, logic, and imagination meet. It spans speech, writing, and interactive formats that value clarity, creativity, and presence of mind.</p>
     </div>
 
-    <!-- Flashcard Slideshow -->
     <div class="flashcard-slideshow vibrant">
-      <div class="flashcard active" style="background-image: url('placeholder1.jpg');">
+      <!-- Debate -->
+      <div class="flashcard active" style="background-image:url('debate.png')">
         <div class="overlay-gradient"></div>
         <div class="overlay-text">
           <h2>Debate</h2>
-          <p>A battle of ideas where logic, eloquence, and perspective come together to shape powerful arguments.</p>
+          <p>
+            • Structured argumentation on contemporary themes.<br>
+            • Rewards clarity, reasoning, and rebuttals.<br>
+            • Balances content depth with delivery style.<br>
+            • Tests awareness, logic, and persuasion.<br>
+            • Encourages examples and clean structure.<br>
+            • Emphasis on civility and coherence.<br>
+            • Ideal for analytical communicators.
+          </p>
         </div>
       </div>
 
-      <div class="flashcard" style="background-image: url('placeholder2.jpg');">
+      <!-- Extempore -->
+      <div class="flashcard" style="background-image:url('extempore.png')">
         <div class="overlay-gradient"></div>
         <div class="overlay-text">
           <h2>Extempore</h2>
-          <p>A spontaneous showcase of wit and clarity, where speakers think on their feet and express ideas with confidence and grace.</p>
+          <p>
+            • Speak on a surprise topic with minimal prep.<br>
+            • Focus on structure: intro, points, close.<br>
+            • Tests spontaneity and articulation.<br>
+            • Encourages presence, pacing, and clarity.<br>
+            • Creative examples elevate impact.<br>
+            • Time discipline matters throughout.<br>
+            • Great for confident speakers.
+          </p>
         </div>
       </div>
 
-      <div class="flashcard" style="background-image: url('placeholder3.jpg');">
-        <div class="overlay-gradient"></div>
-        <div class="overlay-text">
-          <h2>Air Crash</h2>
-          <p>A creative role-play event where participants imagine surviving a plane crash and use quick thinking, teamwork, and storytelling to make their case for survival.</p>
-        </div>
-      </div>
-
-      <div class="flashcard" style="background-image: url('placeholder4.jpg');">
-        <div class="overlay-gradient"></div>
-        <div class="overlay-text">
-          <h2>Dumb Charades</h2>
-          <p>A fun, expressive guessing game where participants act out words or movie titles without speaking, relying only on gestures and imagination.</p>
-        </div>
-      </div>
-
-      <div class="flashcard" style="background-image: url('placeholder5.jpg');">
-        <div class="overlay-gradient"></div>
-        <div class="overlay-text">
-          <h2>Just A Minute (JAM)</h2>
-          <p>A one-minute challenge where participants speak on a given topic without hesitation, repetition, or deviation, testing their spontaneity and fluency.</p>
-        </div>
-      </div>
-
-      <div class="flashcard" style="background-image: url('placeholder6.jpg');">
+      <!-- Creative Writing -->
+      <div class="flashcard" style="background-image:url('creativewrite.png')">
         <div class="overlay-gradient"></div>
         <div class="overlay-text">
           <h2>Creative Writing</h2>
-          <p>Adorn hands with intricate patterns that blend tradition, elegance, and artistic grace.</p>
+          <p>
+            • Expressive prose or poetry on a prompt/theme.<br>
+            • Focus on originality and voice.<br>
+            • Narrative flow and imagery are key.<br>
+            • Clarity and coherence shape the read.<br>
+            • Thoughtful titles add appeal.<br>
+            • Language control enhances impact.<br>
+            • Ideal for storytellers and poets.
+          </p>
         </div>
       </div>
 
-      <div class="flashcard" style="background-image: url('placeholder7.jpg');">
+      <!-- Quiz -->
+      <div class="flashcard" style="background-image:url('quiz.png')">
         <div class="overlay-gradient"></div>
         <div class="overlay-text">
           <h2>Quiz</h2>
-          <p>A thrilling test of knowledge and speed where participants race to answer questions across diverse topics with accuracy and insight.</p>
+          <p>
+            • Team-based general and themed quizzing.<br>
+            • Tests breadth and recall under time.<br>
+            • Mix of formats keeps it dynamic.<br>
+            • Strategy and teamwork matter.<br>
+            • Speed and accuracy both count.<br>
+            • Presence of mind elevates scoring.<br>
+            • Perfect for knowledge enthusiasts.
+          </p>
         </div>
       </div>
 
-      <div class="flashcard" style="background-image: url('placeholder8.jpg');">
+      <!-- JAM -->
+      <div class="flashcard" style="background-image:url('jam.png')">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Just A Minute (JAM)</h2>
+          <p>
+            • One-minute uninterrupted speaking challenge.<br>
+            • Tests fluency, humor, and control.<br>
+            • Penalizes hesitation and deviation.<br>
+            • Sharp listening for valid objections.<br>
+            • Wit and wordplay boost performance.<br>
+            • Timekeeping and poise are vital.<br>
+            • Great for quick thinkers.
+          </p>
+        </div>
+      </div>
+
+      <!-- Pot Pourri -->
+      <div class="flashcard" style="background-image:url('potpourri.png')">
         <div class="overlay-gradient"></div>
         <div class="overlay-text">
           <h2>Pot Pourri</h2>
-          <p>A lively mix of fun games and challenges that test creativity, wit, and teamwork in a light-hearted, entertaining way.</p>
+          <p>
+            • Mixed-format literary games and rounds.<br>
+            • Combines quick thinking and teamwork.<br>
+            • Includes wordplay and rapid responses.<br>
+            • Tests breadth across skills and modes.<br>
+            • Fun, fast, and unpredictable.<br>
+            • Strategy and adaptability matter.<br>
+            • Ideal for versatile teams.
+          </p>
         </div>
       </div>
 
-      <!-- Navigation -->
-      <button class="flash-prev">❮</button>
-      <button class="flash-next">❯</button>
+      <!-- Dumb Charades -->
+      <div class="flashcard" style="background-image:url('dumcharades.png')">
+        <div class="overlay-gradient"></div>
+        <div class="overlay-text">
+          <h2>Dumb Charades</h2>
+          <p>
+            • Silent acting to communicate titles/phrases.<br>
+            • Emphasizes gesture and creative cues.<br>
+            • Team synergy drives success.<br>
+            • Time-limited guessing raises stakes.<br>
+            • No speaking—only expressive acting.<br>
+            • Fun, fast, and high-energy.<br>
+            • Great for performance lovers.
+          </p>
+        </div>
+      </div>
+
+      <div class="flash-dots"></div>
     </div>
 
-    <!-- Back Button -->
-    <div class="back-btn-container">
-      <a href="events.html" class="btn center-btn">Back to Events</a>
-    </div>
+    <div class="back-btn-container"><a href="events.html" class="btn center-btn">Back to Events</a></div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Blossoms 2025. All rights reserved. Celebrating Nature's Beauty.</p>
+  <!--
+    Footer
+    This is the same footer from index.html
+  -->
+  <footer class="animate-on-scroll">
+      <div class="footer-container">
+          <!-- Column 1: Logo and About -->
+          <div class="footer-column about">
+              <div class="footer-logo">
+                  <img src="blossoms_logo.png" alt="Blossoms Logo">
+                  <h3>Blossoms 2025</h3>
+              </div>
+              <p>
+                  Blossoms is the intra-deanery cultural fest at Christ (Deemed To Be University) Bangalore, School of Sciences.
+              </p>
+          </div>
+
+          <!-- Column 2: Quick Links -->
+          <div class="footer-column links">
+              <h4>Quick Links</h4>
+              <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="index.html#events">Events</a></li>
+                  <li><a href="schedule.html">Schedules</a></li>
+                  <li><a href="winners.html">Winners</a></li>
+                  <li><a href="#contact">Contact Us</a></li>
+              </ul>
+          </div>
+
+          <!-- Column 3: Socials and Contact -->
+          <div class="footer-column social">
+              <h4>Follow Us</h4>
+              <div class="footer-socials">
+                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                  <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+              <h4>Contact</h4>
+              <p>
+                  <i class="fas fa-map-marker-alt"></i>
+                  Christ (Deemed To Be University), Bangalore
+              </p>
+              <p>
+                  <i class="fas fa-envelope"></i>
+                  contact@blossoms.com
+              </p>
+          </div>
+      </div>
+      <div class="footer-copyright">
+          <p>
+              © 2025 Blossoms - School of Sciences, Christ (Deemed To Be University). All rights reserved.
+          </p>
+      </div>
   </footer>
 
+  <!--
+    Link to the SITE-WIDE JavaScript file
+    (Handles header and scroll animations)
+  -->
+  <script src="scriptindex.js" defer></script>
+
+  <!--
+    Link to the EVENT JavaScript file
+    (Handles the flashcard slideshow)
+  -->
+  <script src="script.js" defer></script>
 </body>
 </html>

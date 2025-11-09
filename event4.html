@@ -3,106 +3,212 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Theater Events | Blossoms 2025</title>
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+  <title>Theatre Events | Blossoms 2025</title>
+  <!-- Link to the MAIN stylesheet (for header, footer, and theme) -->
+  <link rel="stylesheet" href="styleindex.css">
+
+  <!-- Link to the NEW stylesheet (for this page's content only) -->
+  <link rel="stylesheet" href="styleevents.css">
+
+  <!-- Icon library for footer -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">
-      <a href="index.html">
-        <img src="logo.png" alt="Blossoms 2025 Logo">
-      </a>
-    </div>
-    <div class="center-heading">
-      <h1 class="main-title">Blossoms 2025</h1>
-      <p class="sub-title">Celebrating Nature's Beauty</p>
-    </div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="events.html" class="active">Events</a>
-    </div>
-    <div class="hamburger-menu-toggle" onclick="toggleMenu()">☰</div>
-    <div class="hamburger-menu" id="hamburger-menu">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="events.html">Events</a>
-    </div>
-  </nav>
+  <!--
+    Header (Final State)
+    This is the same header from index.html, but without the
+    '.logo-center' or '.animation-element' classes, so it
+    loads instantly.
+  -->
+  <header id="main-header">
+      <!-- The logo container -->
+      <div id="logo-container">
+          <img src="blossoms_logo.png" alt="Blossoms Logo" id="blossoms-logo">
+      </div>
 
-  <!-- Theater Event Details -->
+      <!-- The nav links -->
+      <nav id="main-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="index.html#events" class="active">Events</a>
+          <a href="schedule.html">Schedules</a>
+          <a href="winners.html">Winners</a>
+      </nav>
+
+      <!-- Collage Logo Container -->
+      <div id="collage-logo-container">
+          <img src="Christ_logo.png" alt="Collage Logo" id="collage-logo">
+      </div>
+  </header>
+
   <section class="event-details">
-    <h1 class="art-heading">Theater Events – Where expression blossoms</h1>
-
-    <div class="date">Blossoms 2025 | Category: Theater</div>
+    <h1 class="art-heading">Theatre Events</h1>
+    <div class="date">Blossoms 2025 | Category: Theatre</div>
 
     <div class="description">
-      <p>The <strong>Theater category</strong> at <em>Blossoms 2025</em> celebrates the drama and emotion that bring stories to life.
-      Each event is a stage of expression — from powerful performances to subtle gestures, actors breathe soul
-      into every character and scene. Whether through dialogue, movement, or silence, this category invites 
-      everyone to witness the magic of storytelling and the timeless art of theater in its most captivating form.</p>
+      <p>The Theatre category presents storytelling on stage—crafted through performance, voice, movement, and direction. It values concept clarity, ensemble coordination, and emotional connection with the audience.</p>
     </div>
 
-    <!-- Flashcard Slideshow -->
     <div class="flashcard-slideshow vibrant">
-      <div class="flashcard active" style="background-image: url('placeholder1.jpg');">
+      <!-- Mono Acting -->
+      <div class="flashcard active" style="background-image:url('monoacting.png')">
         <div class="overlay-gradient"></div>
         <div class="overlay-text">
           <h2>Mono Acting</h2>
-          <p>A powerful solo performance where a single actor brings multiple emotions and characters to life on stage.</p>
+          <p>
+            • Solo performance portraying a character or theme.<br>
+            • Focus on expression, voice, and movement.<br>
+            • Strong openings and clean arcs matter.<br>
+            • Creative staging enhances delivery.<br>
+            • Character depth over mere mimicry.<br>
+            • Clear, memorable ending is key.<br>
+            • Ideal for bold performers.
+          </p>
         </div>
       </div>
 
-      <div class="flashcard" style="background-image: url('placeholder2.jpg');">
+      <!-- Street Theatre -->
+      <div class="flashcard" style="background-image:url('streettheater.png')">
         <div class="overlay-gradient"></div>
         <div class="overlay-text">
           <h2>Street Theatre</h2>
-          <p>A vibrant form of performance that takes powerful stories to the streets, blending drama, message, and public interaction.</p>
+          <p>
+            • Energetic, issue-based public performance.<br>
+            • Chorus, chants, and ensemble rhythm.<br>
+            • Audience engagement drives impact.<br>
+            • Crisp transitions and beats matter.<br>
+            • Voice projection and clarity are vital.<br>
+            • Visuals and formations add power.<br>
+            • Great for teams with synergy.
+          </p>
         </div>
       </div>
 
-      <div class="flashcard" style="background-image: url('placeholder3.jpg');">
+      <!-- Proscenium -->
+      <div class="flashcard" style="background-image:url('proscenium.png')">
         <div class="overlay-gradient"></div>
         <div class="overlay-text">
-          <h2>Procenium</h2>
-          <p>A traditional stage performance where actors bring stories to life within the classic framed setting of the proscenium stage.</p>
+          <h2>Proscenium</h2>
+          <p>
+            • Stage play with sets and blocking.<br>
+            • Direction, timing, and cues define flow.<br>
+            • Ensemble acting and scene balance.<br>
+            • Dialogue clarity and character arcs.<br>
+            • Purposeful props and placements.<br>
+            • Theme coherence throughout.<br>
+            • Ideal for full-stage storytellers.
+          </p>
         </div>
       </div>
 
-      <div class="flashcard" style="background-image: url('placeholder4.jpg');">
+      <!-- Mime -->
+      <div class="flashcard" style="background-image:url('mime.png')">
         <div class="overlay-gradient"></div>
         <div class="overlay-text">
           <h2>Mime</h2>
-          <p>A silent art form where expressions and gestures speak louder than words, conveying powerful stories without a single sound.</p>
+          <p>
+            • Silent performance through gesture and form.<br>
+            • Sharp body control and expressions.<br>
+            • Clean story beats without dialogue.<br>
+            • Synchronized group shapes add effect.<br>
+            • Costuming supports the theme.<br>
+            • Rhythm and music cues help pacing.<br>
+            • Perfect for visual storytellers.
+          </p>
         </div>
       </div>
 
-      <div class="flashcard" style="background-image: url('placeholder5.jpg');">
+      <!-- Short Film Making -->
+      <div class="flashcard" style="background-image:url('shortfilm.png')">
         <div class="overlay-gradient"></div>
         <div class="overlay-text">
           <h2>Short Film Making</h2>
-          <p>A creative storytelling medium where ideas, emotions, and messages come alive through visuals and cinematic expression in a concise format.</p>
+          <p>
+            • Cinematic storytelling with visual grammar.<br>
+            • Script, shot design, and editing drive flow.<br>
+            • Strong concepts and performances matter.<br>
+            • Sound design enhances immersion.<br>
+            • Pacing and transitions shape impact.<br>
+            • Title and credits polish delivery.<br>
+            • Ideal for creators with vision.
+          </p>
         </div>
       </div>
 
-      <!-- Navigation -->
-      <button class="flash-prev">❮</button>
-      <button class="flash-next">❯</button>
+      <div class="flash-dots"></div>
     </div>
 
-    <!-- Back Button -->
-    <div class="back-btn-container">
-      <a href="events.html" class="btn center-btn">Back to Events</a>
-    </div>
+    <div class="back-btn-container"><a href="events.html" class="btn center-btn">Back to Events</a></div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Blossoms 2025. All rights reserved. Celebrating Nature's Beauty.</p>
+  <!--
+    Footer
+    This is the same footer from index.html
+  -->
+  <footer class="animate-on-scroll">
+      <div class="footer-container">
+          <!-- Column 1: Logo and About -->
+          <div class="footer-column about">
+              <div class="footer-logo">
+                  <img src="blossoms_logo.png" alt="Blossoms Logo">
+                  <h3>Blossoms 2025</h3>
+              </div>
+              <p>
+                  Blossoms is the intra-deanery cultural fest at Christ (Deemed To Be University) Bangalore, School of Sciences.
+              </p>
+          </div>
+
+          <!-- Column 2: Quick Links -->
+          <div class="footer-column links">
+              <h4>Quick Links</h4>
+              <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="index.html#events">Events</a></li>
+                  <li><a href="schedule.html">Schedules</a></li>
+                  <li><a href="winners.html">Winners</a></li>
+                  <li><a href="#contact">Contact Us</a></li>
+              </ul>
+          </div>
+
+          <!-- Column 3: Socials and Contact -->
+          <div class="footer-column social">
+              <h4>Follow Us</h4>
+              <div class="footer-socials">
+                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                  <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                  <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+              <h4>Contact</h4>
+              <p>
+                  <i class="fas fa-map-marker-alt"></i>
+                  Christ (Deemed To Be University), Bangalore
+              </p>
+              <p>
+                  <i class="fas fa-envelope"></i>
+                  contact@blossoms.com
+              </p>
+          </div>
+      </div>
+      <div class="footer-copyright">
+          <p>
+              © 2025 Blossoms - School of Sciences, Christ (Deemed To Be University). All rights reserved.
+          </p>
+      </div>
   </footer>
 
+  <!--
+    Link to the SITE-WIDE JavaScript file
+    (Handles header and scroll animations)
+  -->
+  <script src="scriptindex.js" defer></script>
+
+  <!--
+    Link to the EVENT JavaScript file
+    (Handles the flashcard slideshow)
+  -->
+  <script src="script.js" defer></script>
 </body>
 </html>

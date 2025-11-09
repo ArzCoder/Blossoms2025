@@ -1,3 +1,4 @@
+// Hamburger menu toggle
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 const hamburgerMenuToggle = document.querySelector(".hamburger-menu-toggle");
 
@@ -7,52 +8,69 @@ if (hamburgerMenuToggle) {
   };
 }
 
-let currentSlide = 0;
-const slides = document.querySelectorAll(".carousel-slide");
+// ---- Vibrant Flashcard Slideshow ----
+let currentFlash = 0;
+const flashcards = document.querySelectorAll(".flashcard");
+const dotsContainer = document.querySelector(".flash-dots");
 
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.style.display = i === index ? "block" : "none";
+function showFlash(index) {
+  flashcards.forEach((card, i) => {
+    card.classList.remove("active");
   });
-}
+  flashcards[index].classList.add("active");
 
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-}
-
-function prevSlide() {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(currentSlide);
-}
-
-if (slides.length > 0) {
-  showSlide(currentSlide);
-  setInterval(nextSlide, 4000);
-}
-
-// Calendar Navigation
-const navBtns = document.querySelectorAll('.nav-btn');
-const calendarFlashcards = document.querySelectorAll('.calendar-flashcard');
-
-navBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const month = btn.getAttribute('data-month');
-    
-    // Remove active class from all buttons
-    navBtns.forEach(b => b.classList.remove('active'));
-    // Add active class to clicked button
-    btn.classList.add('active');
-    
-    // Hide all calendars
-    calendarFlashcards.forEach(card => {
-      card.style.display = 'none';
-    });
-    
-    // Show selected calendar
-    const selectedCalendar = document.getElementById(month);
-    if (selectedCalendar) {
-      selectedCalendar.style.display = 'block';
-    }
+  // Update dots
+  const dots = document.querySelectorAll(".dot");
+  dots.forEach((dot, i) => {
+    dot.classList.remove("active");
   });
-});
+  if (dots[index]) {
+    dots[index].classList.add("active");
+  }
+}
+
+function nextFlash() {
+  currentFlash = (currentFlash + 1) % flashcards.length;
+  showFlash(currentFlash);
+}
+
+function prevFlash() {
+  currentFlash = (currentFlash - 1 + flashcards.length) % flashcards.length;
+  showFlash(currentFlash);
+}
+
+function goToFlash(index) {
+  currentFlash = index;
+  showFlash(currentFlash);
+}
+
+// Create dots dynamically
+if (flashcards.length > 0 && dotsContainer) {
+  for (let i = 0; i < flashcards.length; i++) {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => goToFlash(i));
+    dotsContainer.appendChild(dot);
+  }
+}
+
+let slideshowInterval;
+
+function startSlideshow() {
+  slideshowInterval = setInterval(nextFlash, 4000);
+}
+
+function stopSlideshow() {
+  clearInterval(slideshowInterval);
+}
+
+if (flashcards.length > 0) {
+  showFlash(currentFlash);
+  startSlideshow();
+
+  // Pause on hover
+  const slideshow = document.querySelector('.flashcard-slideshow');
+  slideshow.addEventListener('mouseenter', stopSlideshow);
+  slideshow.addEventListener('mouseleave', startSlideshow);
+}

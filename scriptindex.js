@@ -2,6 +2,74 @@
 window.addEventListener('load', () => {
 
     // ==========================================
+    // --- 0. FLOWER PARTICLES ANIMATION ---
+    // ==========================================
+
+    /**
+     * Creates and animates flower particles from left bottom and right bottom corners diagonally.
+     */
+    function initFlowerParticles() {
+        const container = document.getElementById('flower-particles-container');
+        if (!container) return;
+
+        // Function to create a single particle
+        function createParticle(startX, startY, directionX, directionY) {
+            const particle = document.createElement('div');
+            particle.className = 'flower-particle';
+            particle.style.left = startX + 'px';
+            particle.style.bottom = startY + 'px';
+            container.appendChild(particle);
+
+            // Randomize size slightly (larger for visibility)
+            const size = Math.random() * 10 + 20; // 20-30px
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+
+            // Animate the particle
+            let x = startX;
+            let y = startY;
+            let opacity = 0.8;
+            const speedX = directionX * (Math.random() * 2 + 1); // Random speed (faster)
+            const speedY = directionY * (Math.random() * 2 + 1);
+            const fadeSpeed = 0.005; // Slower fade out
+
+            function animate() {
+                x += speedX;
+                y += speedY;
+                opacity -= fadeSpeed;
+
+                particle.style.left = x + 'px';
+                particle.style.bottom = y + 'px';
+                particle.style.opacity = opacity;
+
+                if (opacity > 0 && y < window.innerHeight + 50) {
+                    requestAnimationFrame(animate);
+                } else {
+                    particle.remove();
+                }
+            }
+
+            animate();
+        }
+
+        // Create particles every 500ms (increased frequency for visibility)
+        setInterval(() => {
+            // From left bottom corner, moving diagonally up-right (2-4 particles)
+            for (let i = 0; i < Math.floor(Math.random() * 3) + 2; i++) {
+                createParticle(-50, -50, 1, 1);
+            }
+
+            // From right bottom corner, moving diagonally up-left (2-4 particles)
+            for (let i = 0; i < Math.floor(Math.random() * 3) + 2; i++) {
+                createParticle(window.innerWidth - 50, -50, -1, 1);
+            }
+        }, 500);
+    }
+
+    // Initialize flower particles
+    initFlowerParticles();
+
+    // ==========================================
     // --- 1. INTRO ANIMATION (LOGO & NAV) ---
     // ==========================================
 
@@ -154,14 +222,14 @@ window.addEventListener('load', () => {
             const details = activeCard.querySelector('.card-details'); // Get hidden details
 
             if (details) {
-                // Find the hidden p tag and a tag
-                const categories = details.querySelector('p').textContent;
+                // Get only the p content (description)
+                const categoriesText = details.querySelector('p').innerHTML;
                 const button = details.querySelector('a').cloneNode(true); // Clone button
-                
+
                 // Set the text content on the right
                 detailTitle.textContent = eventName;
-                detailCategories.textContent = categories;
-                
+                detailCategories.innerHTML = categoriesText;
+
                 // Update the register button
                 detailButtonContainer.innerHTML = ''; // Clear old button
                 detailButtonContainer.appendChild(button); // Add new button

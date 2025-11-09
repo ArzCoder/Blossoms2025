@@ -1,0 +1,188 @@
+/* styleevents.css - Common styles for all event pages (Art, Literary, Music, Theatre, Dance Events) */
+
+/* Flashcard slideshow styles */
+.flashcard-slideshow {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.flashcard {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.5s ease;
+  cursor: pointer;
+}
+
+.flashcard:hover .overlay-gradient {
+  opacity: 50;
+  filter: blur(100px);
+}
+
+.flashcard:hover .overlay-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.flashcard.active {
+  display: block;
+}
+
+.overlay-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+  transition: opacity 0.3s ease;
+}
+
+.overlay-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: white;
+  text-align: left;
+  z-index: 2;
+  opacity: 0.8;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.overlay-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.overlay-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.flash-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dot.active {
+  background: white;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Event details section */
+.event-details {
+  padding: 220px 20px 50px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #fce4ec, #f8bbd0, #f3e5ff);
+  min-height: 100vh;
+}
+
+.art-heading {
+  font-size: 3rem;
+  color: #ad1457;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+}
+
+.date {
+  font-size: 1.2rem;
+  color: #ec407a;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.description {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #4a235a;
+}
+
+.description p {
+  margin: 0;
+}
+
+/* Back button */
+.back-btn-container {
+  margin-top: 40px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #ec407a, #ad1457);
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(236, 64, 122, 0.4);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(236, 64, 122, 0.6);
+}
+
+.center-btn {
+  margin: 0 auto;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .art-heading {
+    font-size: 2.5rem;
+  }
+
+  .overlay-text h2 {
+    font-size: 2rem;
+  }
+
+  .overlay-text p {
+    font-size: 1rem;
+  }
+
+  .flashcard {
+    height: 400px;
+  }
+
+  .flash-prev, .flash-next {
+    font-size: 1.5rem;
+    padding: 8px 12px;
+  }
+}
