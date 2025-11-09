@@ -164,6 +164,34 @@
 }
 
 /* Responsive design */
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .flashcard-slideshow {
+    max-width: 1000px;
+  }
+  .flashcard {
+    height: 450px;
+  }
+  .overlay-text h2 {
+    font-size: 2.2rem;
+  }
+  .overlay-text p {
+    font-size: 1rem;
+  }
+  .art-heading {
+    font-size: 2.7rem;
+  }
+  .description {
+    font-size: 1.1rem;
+    max-width: 700px;
+  }
+  .event-details {
+    padding: 200px 20px 40px 20px;
+  }
+}
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .art-heading {
     font-size: 2.5rem;
@@ -184,5 +212,15 @@
   .flash-prev, .flash-next {
     font-size: 1.5rem;
     padding: 8px 12px;
+  }
+
+  /* Make event details responsive */
+  .event-details {
+    padding: 150px 20px 50px 20px;
+  }
+
+  .description {
+    font-size: 1.1rem;
+    max-width: 100%;
   }
 }

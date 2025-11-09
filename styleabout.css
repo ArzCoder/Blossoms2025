@@ -4,164 +4,332 @@
   in the main 'style.css' file.
 */
 
+/* --- Scene 1: Flower Particles --- */
+#flower-particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.flower-particle {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-pink);
+    border-radius: 50%;
+    opacity: 0.7;
+    will-change: transform, opacity;
+}
+
 /* --- About Hero Section --- */
 #about-hero {
     /* Use padding to account for the fixed header */
-    padding-top: 220px; 
+    padding-top: 130px;
     text-align: center;
-    min-height: 40vh;
+    min-height: 20vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.about-subtitle {
-    font-size: 1.5rem;
-    color: var(--dark-purple);
-    font-style: italic;
-    margin: -20px 0 0 0;
+.hero-logo {
+    width: 400px;
+    height: auto;
+    margin-top: 20px;
 }
 
-/* --- Mission & Vision Section --- */
-.mission-vision-container {
+/* --- Journey Section --- */
+.journey-container {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    justify-content: center;
 }
 
-.mission-card {
+.journey-phase {
     flex: 1;
     min-width: 300px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(248, 187, 208, 0.3));
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    border-left: 5px solid var(--primary-pink);
-}
-
-.mission-card h3 {
-    font-size: 1.8rem;
-    color: var(--deep-pink);
-    margin: 0 0 15px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.mission-card h3 i {
-    color: var(--primary-pink);
-}
-
-.mission-card p {
-    font-size: 1.1rem;
-    color: var(--dark-purple);
-    line-height: 1.7;
-    margin: 0;
-}
-
-/* --- History Timeline Section --- */
-.timeline {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px 0;
+    overflow: hidden;
 }
 
-/* The vertical line */
-.timeline::before {
+.journey-phase::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 20px;
-    height: 100%;
-    width: 4px;
-    background-color: rgba(92, 42, 77, 0.2); /* Faded --brownish-purple */
-    border-radius: 2px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--purple));
 }
 
-.timeline-item {
-    padding: 10px 40px;
-    padding-left: 60px;
-    position: relative;
-    margin-bottom: 20px;
+.journey-phase:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-.timeline-dot {
-    content: '';
-    position: absolute;
-    left: 8px; /* (40px padding - 24px dot width) / 2 */
-    top: 20px;
-    height: 24px;
-    width: 24px;
-    background-color: #fff;
-    border: 4px solid var(--primary-pink);
-    border-radius: 50%;
-    z-index: 2;
+.journey-phase i {
+    font-size: 3rem;
+    color: var(--primary-pink);
+    margin-bottom: 15px;
+    display: block;
 }
 
-.timeline-content {
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 20px;
-    border-radius: 10px;
+.journey-phase h3 {
+    font-size: 1.8rem;
+    color: var(--deep-pink);
+    margin: 0 0 15px 0;
+}
+
+.journey-phase p {
+    font-size: 1.1rem;
+    color: var(--dark-purple);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- About Blossoms Section --- */
+#about-blossoms {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+/* Make navbar visible immediately for about page */
+nav {
+    opacity: 1 !important;
+}
+
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-text {
+    flex: 1;
     text-align: left;
 }
 
-.timeline-content h3 {
+.about-text .description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.about-video {
+    flex: 1;
+    text-align: center;
+}
+
+.about-video video {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Team Onyx Section --- */
+.team-info {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.team-info > p {
+    font-size: 1.2rem;
+    color: var(--dark-purple);
+    line-height: 1.7;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.team-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.detail-item {
+    flex: 1;
+    min-width: 250px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 235, 238, 0.4));
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.detail-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-pink), var(--purple));
+}
+
+.detail-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.detail-item i {
+    font-size: 2.5rem;
+    color: var(--primary-pink);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.detail-item h4 {
     font-size: 1.5rem;
-    color: var(--darker-pink);
+    color: var(--deep-pink);
     margin: 0 0 10px 0;
 }
 
-.timeline-content p {
+.detail-item p {
     font-size: 1rem;
     color: var(--dark-purple);
     line-height: 1.6;
     margin: 0;
 }
 
-/* --- Faculty Section --- */
-.faculty-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-}
-
-.faculty-card {
-    background-color: #fff;
+.call-to-action {
+    background: linear-gradient(135deg, rgba(236, 64, 122, 0.1), rgba(142, 36, 170, 0.1));
+    padding: 40px;
     border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-    padding: 25px;
-    width: 250px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid var(--primary-pink);
 }
 
-.faculty-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
-
-.faculty-card img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
-    border: 5px solid rgba(236, 64, 122, 0.2);
-}
-
-.faculty-card h3 {
-    font-size: 1.4rem;
-    color: var(--darker-pink);
-    margin: 0 0 5px 0;
-}
-
-.faculty-card p {
-    font-size: 1rem;
+.call-to-action p {
+    font-size: 1.1rem;
     color: var(--dark-purple);
-    margin: 0;
+    line-height: 1.7;
+    margin: 0 0 20px 0;
+}
+
+.call-to-action p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Responsive Design --- */
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+    #about-hero {
+        padding-top: 180px;
+        min-height: 30vh;
+    }
+    .about-description {
+        font-size: 1.1rem;
+        max-width: 700px;
+    }
+    .journey-container {
+        gap: 20px;
+    }
+    .journey-phase {
+        min-width: 250px;
+        padding: 25px;
+    }
+    .journey-phase h3 {
+        font-size: 1.6rem;
+    }
+    .team-details {
+        gap: 20px;
+    }
+    .detail-item {
+        min-width: 200px;
+        padding: 20px;
+    }
+    .call-to-action {
+        padding: 30px;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    #about-hero {
+        padding-top: 120px;
+        min-height: 25vh;
+        padding: 120px 20px 40px 20px;
+    }
+    .about-description {
+        font-size: 1rem;
+        max-width: 100%;
+        margin: 15px auto;
+        animation: none;
+        border-right: none;
+        white-space: normal;
+    }
+    .journey-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .journey-phase {
+        min-width: auto;
+        padding: 20px;
+        width: 100%;
+        max-width: 400px;
+    }
+    .journey-phase h3 {
+        font-size: 1.4rem;
+    }
+    .journey-phase i {
+        font-size: 2.5rem;
+    }
+    .team-info > p {
+        font-size: 1.1rem;
+    }
+    .team-details {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .detail-item {
+        min-width: auto;
+        width: 100%;
+        max-width: 350px;
+        padding: 20px;
+    }
+    .detail-item h4 {
+        font-size: 1.3rem;
+    }
+    .call-to-action {
+        padding: 25px 20px;
+    }
+    .call-to-action p {
+        font-size: 1rem;
+    }
+
+    /* Make about container responsive */
+    .about-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-text {
+        text-align: center;
+    }
 }

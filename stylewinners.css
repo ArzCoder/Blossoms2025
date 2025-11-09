@@ -185,12 +185,12 @@
         line-height: 0;
         border-radius: 0 0 5px 5px;
     }
-    
+
     .flip-card::before,
     .flip-card::after {
         line-height: 60px;
     }
-    
+
     .flip-card::before {
         line-height: 60px;
         border-radius: 5px 5px 0 0;
@@ -203,5 +203,49 @@
     .time-label {
         font-size: 0.8rem;
         margin-top: 10px;
+    }
+
+    /* Make timer section responsive */
+    .timer-subtitle {
+        font-size: 1.2rem;
+        margin: -10px 0 30px 0;
+    }
+}
+
+/* --- Tablet adjustments --- */
+@media (max-width: 1024px) {
+    #timer-section {
+        padding-top: 80px;
+        min-height: 50vh;
+    }
+    .timer-subtitle {
+        font-size: 1.3rem;
+        margin: -15px 0 30px 0;
+    }
+    .countdown-container {
+        gap: 20px;
+    }
+    .flip-card {
+        width: 60px;
+        height: 90px;
+        font-size: 3.5rem;
+        line-height: 90px;
+    }
+    .top-half {
+        line-height: 90px;
+    }
+    .bottom-half {
+        line-height: 0;
+    }
+    .flip-card::before,
+    .flip-card::after {
+        line-height: 90px;
+    }
+    .flip-card::before {
+        line-height: 90px;
+    }
+    .time-label {
+        font-size: 1rem;
+        margin-top: 12px;
     }
 }

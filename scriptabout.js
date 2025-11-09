@@ -1,165 +1,170 @@
 /**
- * Main script for Blossoms Website (Site-Wide)
- * * Includes:
- * 1. 3D Card Stack (Home Page)
- * 2. Scroll Animations (All Pages)
+ * Script for About Page
+ * Includes:
+ * 1. Typing Animation for Hero Description
+ * 2. Staggered Fade-in Animations for Sections
+ * 3. Scroll Animations
  */
 
 // Wait for the entire page to load before starting any animations
 window.addEventListener('load', () => {
 
-    // --- 1. NO INTRO ANIMATION ---
-    // Manually show all header elements and hero content on page load.
-    
-    const header = document.getElementById('main-header');
-    if (header) {
-        // Remove animation classes so it appears in its final state
-        header.classList.remove('logo-center', 'animation-element');
-        // Manually set opacity to 1 (in case CSS transition is slow)
-        header.style.opacity = '1'; 
-        header.style.visibility = 'visible';
-    }
-    
-    // Show Blossoms Logo
-    const logo = document.getElementById('blossoms-logo');
-    if (logo) {
-        logo.style.opacity = '1';
-    }
-
-    // Show Collage Logo
-    const collageLogo = document.getElementById('collage-logo-container');
-    if (collageLogo) {
-        collageLogo.style.opacity = '1';
-    }
-
-    // Show Nav Bar Background
-    const navBar = document.getElementById('main-nav');
-    if (navBar) {
-        navBar.style.opacity = '1';
-    }
-
-    // Show Nav Links
-    const navLinks = document.querySelectorAll('#main-nav a');
-    navLinks.forEach((link, index) => {
-        link.classList.add('visible'); 
-    });
-
-    // Show Hero Content
-    const heroElement = document.getElementById('hero');
-    if (heroElement) {
-        heroElement.style.visibility = 'visible';
-        heroElement.style.opacity = '1';
-    }
-
-
-    // --- 2. 3D CARD STACK (Home Page Only) ---
-    // We check if the card stack exists
-    const cardStack = document.getElementById('event-card-stack');
-    if (cardStack) {
-        initCardStack(cardStack);
-    }
+    // ==========================================
+    // --- 0. FLOWER PARTICLES ANIMATION ---
+    // ==========================================
 
     /**
-     * Function to initialize the 3D card stack.
-     * @param {HTMLElement} stackContainer - The main container element for the stack.
+     * Creates and animates flower particles from left bottom and right bottom corners diagonally.
      */
-    function initCardStack(stackContainer) {
-        const cards = Array.from(stackContainer.getElementsByClassName('card-stack_item'));
-        const nextButton = document.getElementById('card-stack-next');
-        const prevButton = document.getElementById('card-stack-prev');
-        
-        // Details content
-        const detailsTitle = document.getElementById('event-details-title');
-        const detailsText = document.getElementById('event-details-text');
-        const detailsButtonContainer = document.getElementById('event-details-button-container');
+    function initFlowerParticles() {
+        const container = document.getElementById('flower-particles-container');
+        if (!container) return;
 
-        // Dots navigation
-        const dotsContainer = document.getElementById('card-stack-dots');
-        let dots = [];
+        // Function to create a single particle
+        function createParticle(startX, startY, directionX, directionY) {
+            const particle = document.createElement('div');
+            particle.className = 'flower-particle';
+            particle.style.left = startX + 'px';
+            particle.style.bottom = startY + 'px';
+            container.appendChild(particle);
 
-        // Create dots
-        if (dotsContainer) {
-            cards.forEach((_, index) => {
-                const dot = document.createElement('button');
-                dot.className = 'card-stack-dot';
-                dot.setAttribute('aria-label', `Go to card ${index + 1}`);
-                dot.addEventListener('click', () => {
-                    setActiveIndex(index);
-                });
-                dotsContainer.appendChild(dot);
-                dots.push(dot);
-            });
-        }
+            // Randomize size slightly (larger for visibility)
+            const size = Math.random() * 10 + 20; // 20-30px
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
 
-        let activeIndex = 0;
+            // Animate the particle
+            let x = startX;
+            let y = startY;
+            let opacity = 0.8;
+            const speedX = directionX * (Math.random() * 2 + 1); // Random speed (faster)
+            const speedY = directionY * (Math.random() * 2 + 1);
+            const fadeSpeed = 0.005; // Slower fade out
 
-        /**
-         * Updates all cards and details based on the activeIndex.
-         */
-        function updateCardStack() {
-            // 1. Update Card classes
-            cards.forEach((card, index) => {
-                card.classList.remove('is-active', 'is-prev', 'is-next');
+            function animate() {
+                x += speedX;
+                y += speedY;
+                opacity -= fadeSpeed;
 
-                if (index === activeIndex) {
-                    card.classList.add('is-active');
-                } else if (index === (activeIndex - 1 + cards.length) % cards.length) {
-                    card.classList.add('is-prev');
-                } else if (index === (activeIndex + 1) % cards.length) {
-                    card.classList.add('is-next');
+                particle.style.left = x + 'px';
+                particle.style.bottom = y + 'px';
+                particle.style.opacity = opacity;
+
+                if (opacity > 0 && y < window.innerHeight + 50) {
+                    requestAnimationFrame(animate);
+                } else {
+                    particle.remove();
                 }
-            });
-
-            // 2. Update Details content
-            const activeCard = cards[activeIndex];
-            const title = activeCard.querySelector('h3').textContent;
-            const detailsHTML = activeCard.querySelector('.card-details').innerHTML;
-            
-            if (detailsTitle) detailsTitle.textContent = title;
-            if (detailsText) detailsText.innerHTML = detailsHTML;
-
-            // 3. Update Dots
-            if (dots.length > 0) {
-                dots.forEach((dot, index) => {
-                    if (index === activeIndex) {
-                        dot.classList.add('is-active');
-                    } else {
-                        dot.classList.remove('is-active');
-                    }
-                });
             }
+
+            animate();
         }
 
-        /**
-         * Safely sets the active index and updates the stack.
-         * @param {number} index - The new index to set.
-         */
-        function setActiveIndex(index) {
-            activeIndex = index;
-            updateCardStack();
-        }
+        // Create particles every 500ms (increased frequency for visibility)
+        setInterval(() => {
+            // From left bottom corner, moving diagonally up-right (2-4 particles)
+            for (let i = 0; i < Math.floor(Math.random() * 3) + 2; i++) {
+                createParticle(-50, -50, 1, 1);
+            }
 
-        // Click next
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                setActiveIndex((activeIndex + 1) % cards.length);
-            });
-        }
-
-        // Click prev
-        if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                setActiveIndex((activeIndex - 1 + cards.length) % cards.length);
-            });
-        }
-
-        // Set initial state
-        updateCardStack();
+            // From right bottom corner, moving diagonally up-left (2-4 particles)
+            for (let i = 0; i < Math.floor(Math.random() * 3) + 2; i++) {
+                createParticle(window.innerWidth - 50, -50, -1, 1);
+            }
+        }, 500);
     }
 
+    // Initialize flower particles
+    initFlowerParticles();
 
-    // --- 3. SCROLL ANIMATIONS (All Pages) ---
-    // This function will run on all pages
+    // --- HEADER ANIMATIONS (same as index.html) ---
+
+    // Scene 1: Logo scaling animation
+    const logoContainer = document.getElementById('logo-container');
+    if (logoContainer) {
+        logoContainer.style.visibility = 'visible'; // Make visible immediately
+        logoContainer.style.opacity = '1'; // Make visible immediately
+        logoContainer.style.transform = 'scale(1)'; // Start at full scale
+    }
+
+    // Scene 2: Navigation links fade-in
+    const nav = document.getElementById('main-nav');
+    if (nav) {
+        nav.style.visibility = 'visible'; // Make visible immediately
+        nav.style.opacity = '1'; // Make visible immediately
+        setTimeout(() => {
+            nav.style.transition = 'opacity 0.5s ease-in-out';
+            nav.style.opacity = '1';
+        }, 1500);
+    }
+
+    // Scene 3: Collage logo fade-in
+    const collageLogo = document.getElementById('collage-logo');
+    if (collageLogo) {
+        collageLogo.style.visibility = 'visible'; // Make visible immediately
+        collageLogo.style.opacity = '1'; // Make visible immediately
+        setTimeout(() => {
+            collageLogo.style.transition = 'opacity 1s ease-in-out';
+            collageLogo.style.opacity = '1';
+        }, 2000);
+    }
+
+    // --- 1. HERO LOGO ANIMATION ---
+    const heroLogo = document.querySelector('.hero-logo');
+    if (heroLogo) {
+        heroLogo.style.opacity = '0';
+        heroLogo.style.transform = 'translateY(30px)';
+        setTimeout(() => {
+            heroLogo.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+            heroLogo.style.opacity = '1';
+            heroLogo.style.transform = 'translateY(0)';
+        }, 500);
+    }
+
+    // --- 2. STAGGERED FADE-IN ANIMATIONS ---
+    function initStaggeredAnimations() {
+        const journeyPhases = document.querySelectorAll('.journey-phase');
+        const detailItems = document.querySelectorAll('.detail-item');
+        const callToAction = document.querySelector('.call-to-action');
+
+        // Animate journey phases with stagger
+        journeyPhases.forEach((phase, index) => {
+            phase.style.opacity = '0';
+            phase.style.transform = 'translateY(30px)';
+            setTimeout(() => {
+                phase.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                phase.style.opacity = '1';
+                phase.style.transform = 'translateY(0)';
+            }, index * 300); // Stagger delay
+        });
+
+        // Animate team details with stagger
+        detailItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            setTimeout(() => {
+                item.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, (journeyPhases.length * 300) + (index * 200)); // Start after journey phases
+        });
+
+        // Animate call-to-action
+        if (callToAction) {
+            callToAction.style.opacity = '0';
+            callToAction.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                callToAction.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+                callToAction.style.opacity = '1';
+                callToAction.style.transform = 'scale(1)';
+            }, (journeyPhases.length * 300) + (detailItems.length * 200) + 500); // Start after details
+        }
+    }
+
+    // Initialize staggered animations
+    initStaggeredAnimations();
+
+    // --- 3. SCROLL ANIMATIONS ---
     initScrollAnimations();
 
 });

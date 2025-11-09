@@ -16,20 +16,23 @@
 </head>
 <body>
 
-    <!-- 
-      Header (Final State)
-      This is the same header from index.html, but without the
-      '.logo-center' or '.animation-element' classes, so it
-      loads instantly.
+    <!--
+      Scene 1: Flower particles container
     -->
-    <header id="main-header">
+    <div id="flower-particles-container"></div>
+
+    <!--
+      Header with Animations
+      Same as index.html with animation classes
+    -->
+    <header id="main-header" class="logo-center">
         <!-- The logo container -->
-        <div id="logo-container">
+        <div id="logo-container" class="animation-element">
             <img src="blossoms_logo.png" alt="Blossoms Logo" id="blossoms-logo">
         </div>
 
         <!-- The nav links -->
-        <nav id="main-nav">
+        <nav id="main-nav" class="animation-element">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="index.html#events">Events</a>
@@ -38,96 +41,79 @@
         </nav>
 
         <!-- Collage Logo Container -->
-        <div id="collage-logo-container">
+        <div id="collage-logo-container" class="animation-element">
             <img src="Christ_logo.png" alt="Collage Logo" id="collage-logo">
         </div>
     </header>
 
-    <!-- 
+    <!--
       Main Page Content
     -->
     <main id="main-content">
-        
-        <!-- About Hero Section -->
-        <section id="about-hero" class="content-section animate-on-scroll">
-            <h1 class="section-title">About Blossoms</h1>
-            <p class="about-subtitle">"In the heart of Christ's vibrant hue, where talents bloom in a colorful brew..."</p>
-        </section>
 
-        <!-- Mission & Vision Section -->
-        <section id="mission-vision" class="content-section animate-on-scroll">
-            <div class="mission-vision-container">
-                <div class="mission-card">
-                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
-                    <p>To provide a dynamic platform for students of the School of Sciences to showcase their diverse talents, foster a spirit of healthy competition, and cultivate a vibrant campus culture rooted in creativity and excellence.</p>
+        <!-- Combined About Hero Section with Content and Video -->
+        <section id="about-hero" class="content-section">
+            <h1 class="section-title">About Blossoms & The School of Sciences Journey</h1>
+            <img src="blossoms_team.png" alt="Team Logo" class="hero-logo">
+
+            <!-- About Blossoms Content and Video -->
+            <div class="about-container">
+                <div class="about-text">
+                    <p class="description">
+                        Blossoms is the intra-deanery cultural fest at Christ (Deemed To Be University) Bangalore with the motto 'Be the best'. This is a unique venture where all 7000 students of Christ University, Bangalore participate in a cultural event. The events are divided into four categories - Art, Theatre, Stage & Literary. Students compete in multiple events across these categories. The winners lay their hands on the Inter-Deanery trophy for Artistic Excellence and Service.
+                    </p>
                 </div>
-                <div class="mission-card">
-                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
-                    <p>To be the most anticipated and inclusive cultural fest, nurturing the next generation of artists, performers, and leaders by encouraging participation, celebrating diversity, and promoting artistic expression in all its forms.</p>
+                <div class="about-video">
+                    <video autoplay muted loop poster="https://placehold.co/600x400/ec407a/white?text=About+Video">
+                        <source src="blossoms-24.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </section>
 
-        <!-- History Section -->
-        <section id="history" class="content-section animate-on-scroll">
-            <h2 class="section-title">A Legacy of Excellence</h2>
-            <div class="timeline">
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>2018 - The Genesis</h3>
-                        <p>Blossoms was first conceptualized as a small-scale intra-departmental event. The first fest saw 500+ participants in 10 events.</p>
-                    </div>
+        <!-- Journey Section -->
+        <section id="journey" class="content-section animate-on-scroll">
+            <h2 class="section-title">The Journey Through Blossoms</h2>
+            <div class="journey-container">
+                <div class="journey-phase">
+                    <i class="fas fa-users"></i>
+                    <h3>Intra-Deanery Prelims</h3>
+                    <p>The initial round sees fierce but friendly competition within individual deaneries, identifying the brightest stars and strongest contenders.</p>
                 </div>
-                <!-- Timeline Item 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>2020 - Going Digital</h3>
-                        <p>In response to global challenges, Blossoms successfully transitioned to a fully online format, engaging over 3,000 students from their homes.</p>
-                    </div>
-                </div>
-                <!-- Timeline Item 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>2023 - The Grand Return</h3>
-                        <p>The fest returned to campus with unprecedented scale, featuring 50+ events across all categories and participation from all 7,000 students.</p>
-                    </div>
-                </div>
-                <!-- Timeline Item 4 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>2025 - Brighter Blooms</h3>
-                        <p>This year, Blossoms aims to 'Be the Best' with new exciting categories, professional workshops, and a focus on service and artistic excellence.</p>
-                    </div>
+                <div class="journey-phase">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Inter-Deanery Finals</h3>
+                    <p>The champions from each deanery then advance to the grand stage, where they compete at an inter-deanery level, vying for ultimate glory and the coveted Blossoms title.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Faculty Coordinators Section -->
-        <section id="faculty" class="content-section animate-on-scroll">
-            <h2 class="section-title">Meet the Faculty Coordinators</h2>
-            <div class="faculty-grid">
-                <!-- Faculty Card 1 -->
-                <div class="faculty-card">
-                    <img src="https://placehold.co/150x150/8e24aa/white?text=Dr.+Name" alt="Faculty Coordinator">
-                    <h3>Dr. Evelyn Reed</h3>
-                    <p>Head of Department, Life Sciences</p>
+        <!-- Team Onyx Section -->
+        <section id="team-onyx" class="content-section animate-on-scroll">
+            <h2 class="section-title">Representing the School of Sciences: Team Onyx</h2>
+            <div class="team-info">
+                <p>As part of the vibrant tapestry of Blossoms, the School of Sciences proudly fields its own dedicated team. We are Team Onyx, embodying the spirit of innovation, precision, and boundless creativity inherent to the sciences.</p>
+                <div class="team-details">
+                    <div class="detail-item">
+                        <i class="fas fa-palette"></i>
+                        <h4>Team Color</h4>
+                        <p>White – symbolizing clarity, brilliance, and the unity that empowers us.</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-gem"></i>
+                        <h4>Team Name</h4>
+                        <p>Onyx – representing strength, resilience, and the polished excellence we bring to every challenge.</p>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-fire"></i>
+                        <h4>Team Slogan</h4>
+                        <p>"From flames to flights, White Onyx Ignites." – A testament to our journey, transforming raw passion and scientific insight into soaring artistic achievements that captivate and inspire.</p>
+                    </div>
                 </div>
-                <!-- Faculty Card 2 -->
-                <div class="faculty-card">
-                    <img src="https://placehold.co/150x150/d81b60/white?text=Prof.+Name" alt="Faculty Coordinator">
-                    <h3>Prof. Samuel Chen</h3>
-                    <p>Department of Computer Science</p>
-                </div>
-                <!-- Faculty Card 3 -->
-                <div class="faculty-card">
-                    <img src="https://placehold.co/150x150/5c2a4d/white?text=Dr.+Name" alt="Faculty Coordinator">
-                    <h3>Dr. Anita Brown</h3>
-                    <p>Department of Psychology</p>
+                <div class="call-to-action">
+                    <p>At Blossoms, Team Onyx from the School of Sciences aims not just to participate, but to lead. We encourage all our students to embrace this incredible opportunity – to join us, participate actively across all events, and help us secure a commanding lead in the inter-deanery finals.</p>
+                    <p>This is more than a competition; it's a celebration of talent, a forging of camaraderie, and a testament to the diverse capabilities within the School of Sciences. Join us in making Blossoms an unforgettable experience for Team Onyx!</p>
                 </div>
             </div>
         </section>
@@ -158,7 +144,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="index.html#events">Events</a></li>
-                    <li><a href="#schedules">Schedules</a></li>
+                    <li><a href="schedule.html">Schedules</a></li>
                     <li><a href="winners.html">Winners</a></li>
                 </ul>
             </div>
@@ -167,10 +153,9 @@
             <div class="footer-column social">
                 <h4>Follow Us</h4>
                 <div class="footer-socials">
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/blossoms_sos/?hl=en" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/www.christuniversity.in" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/school/christ-university-bangalore/posts/?feedView=all" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <h4>Contact</h4>
                 <p>
@@ -179,7 +164,7 @@
                 </p>
                 <p>
                     <i class="fas fa-envelope"></i>
-                    contact@blossoms.com
+                    blossoms.sos@christuniversity.in
                 </p>
             </div>
         </div>
@@ -196,5 +181,7 @@
       This is safe now because we added checks.
     -->
     <script src="scriptabout.js" defer></script>
+
+    <script src="scriptindex.js" defer></script>
 </body>
 </html>

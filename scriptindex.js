@@ -396,5 +396,26 @@ window.addEventListener('load', () => {
     // Initialize all scroll-triggered animations
     initScrollAnimations();
 
+// Modal functions for image display
+function showImageModal(imageSrc) {
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-image');
+    modal.style.display = 'block';
+    modalImg.src = imageSrc;
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('image-modal');
+    modal.style.display = 'none';
+}
+
+// Close modal when clicking outside the image
+window.onclick = function(event) {
+    const modal = document.getElementById('image-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+};
+
 }); // End of window.addEventListener('load')
 

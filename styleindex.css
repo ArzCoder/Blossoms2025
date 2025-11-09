@@ -15,7 +15,13 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background: linear-gradient(135deg, #fce4ec, #f8bbd0, #f3e5ff);
     min-height: 100vh;
-    overflow-x: hidden; 
+    overflow-x: hidden;
+}
+
+/* Global responsive images */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* --- 2. Animation & Element Styling --- */
@@ -246,12 +252,36 @@ nav a:hover::after {
     background-color: var(--primary-pink);
     padding: 12px 30px;
     border-radius: 30px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 15px rgba(236, 64, 122, 0.4);
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
 }
 #register-button:hover {
     background-color: var(--darker-pink);
     transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(236, 64, 122, 0.6);
+}
+
+#hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+#subtitle-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+#team-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: -10px;
 }
 
 /* Hero Image */
@@ -607,8 +637,8 @@ nav a:hover::after {
 
 .card-stack-container {
     flex: 1; /* Take half the space */
-    max-width: 500px; 
-    margin: 0; /* Reset margin */
+    max-width: 500px;
+    margin: 0 auto; /* Center the container */
     position: relative;
     height: 400px; /* Fixed height */
     perspective: 1000px;
@@ -1053,7 +1083,8 @@ footer {
     }
 
     .poster {
-        width: 250px;
+        width: 100%;
+        max-width: 250px;
         height: 350px;
         animation: none; /* Disable animations on mobile */
         transform: none;
@@ -1062,6 +1093,48 @@ footer {
 
     .poster.poster-right {
         animation: none;
+    }
+}
+
+/* --- Tablet adjustments --- */
+@media (max-width: 1024px) {
+    #main-title {
+        font-size: 3.5rem;
+    }
+    #sub-title {
+        font-size: 1.8rem;
+    }
+    #hero-team-image {
+        max-width: 180px;
+    }
+    .section-title {
+        font-size: 2.2rem;
+    }
+    .posters-container {
+        gap: 30px;
+    }
+    .poster {
+        width: 100%;
+        max-width: 250px;
+        height: 350px;
+    }
+    .trophy-card .trophy-image {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+    }
+    .event-details-container {
+        gap: 30px;
+    }
+    .card-stack-container {
+        max-width: 400px;
+        height: 350px;
+    }
+    .event-details-content h2 {
+        font-size: 2.4rem;
+    }
+    .footer-container {
+        gap: 20px;
     }
 }
 
@@ -1150,6 +1223,35 @@ footer {
         margin: 20px 0 15px 0;
     }
 
+    /* Make header responsive */
+    #main-header {
+        padding: 15px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #logo-container {
+        order: 1;
+    }
+
+    #blossoms-logo {
+        width: 100px;
+    }
+
+    nav {
+        order: 2;
+        width: 100%;
+        padding: 10px;
+        gap: 10px;
+        font-size: 0.9rem;
+    }
+
+    #collage-logo-container {
+        order: 3;
+        width: 80px;
+        height: 80px;
+    }
+
     .content-section {
         margin: 40px 0;
         padding: 0 10px;
@@ -1199,9 +1301,10 @@ footer {
 
     .card-stack-container {
         perspective: none; /* Flatten the 3D space */
-        height: 350px; /* Adjust height for mobile */
+        height: 400px; /* Increase height for mobile to fit button */
         width: 95%;
         max-width: 400px;
+        margin: 0 auto; /* Center the container */
     }
 
     .card-stack {
@@ -1224,6 +1327,24 @@ footer {
         /* Center the active card */
         transform: none;
         opacity: 1;
+    }
+
+    .card-content {
+        position: relative; /* Enable absolute positioning for button */
+        height: 100%; /* Full height of card */
+    }
+
+    .card-content img {
+        height: 70%; /* Increase image height since title removed */
+    }
+
+    .card-content .inline-button {
+        font-size: 0.9rem; /* Smaller button */
+        padding: 8px 20px;
+        position: absolute;
+        bottom: 30px; /* Bring down a bit more */
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .card-stack-navigation {
@@ -1285,6 +1406,26 @@ footer {
         border-radius: 0 0 5px 5px;
     }
 
+    /* Responsive marquees */
+    .event-images-marquee,
+    .marquee-container {
+        overflow: hidden;
+    }
+
+    .event-images-track,
+    .marquee-track {
+        animation-duration: 40s; /* Slower on mobile */
+    }
+
+    .event-images-track img {
+        width: 250px;
+        height: 150px;
+    }
+
+    .team-card {
+        width: 200px;
+    }
+
     /* Footer mobile */
     .footer-container {
         flex-direction: column;
@@ -1305,5 +1446,44 @@ footer {
     .footer-column.social p {
         justify-content: center;
     }
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
 }
 
